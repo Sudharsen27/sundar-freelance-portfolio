@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #e5e7eb;
+  background: linear-gradient(135deg, #0f172a 0%, #030712 45%, #000000 100%);
+}
+
+.section-shell {
+  @apply rounded-xl border border-white/15 bg-white/5 shadow-glass backdrop-blur-md;
+}
+
+.glow-focus {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-400/60;
+}
+
+.section-balance {
+  @apply mx-auto w-full max-w-6xl;
+}

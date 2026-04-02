@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="ga" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="32" fill="#020617"/>
+  <rect x="80" y="80" width="640" height="360" rx="20" fill="#0f172a" stroke="url(#ga)" stroke-width="2"/>
+  <rect x="120" y="120" width="200" height="140" rx="12" fill="#1e293b"/>
+  <rect x="340" y="120" width="340" height="24" rx="8" fill="#334155"/>
+  <rect x="340" y="160" width="280" height="24" rx="8" fill="#334155"/>
+  <rect x="340" y="200" width="300" height="24" rx="8" fill="#334155"/>
+  <rect x="120" y="300" width="560" height="100" rx="12" fill="#111827" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <rect x="80" y="460" width="200" height="60" rx="12" fill="#1e293b" stroke="#64748b"/>
+  <rect x="300" y="460" width="200" height="60" rx="12" fill="#1e293b" stroke="#64748b"/>
+  <rect x="520" y="460" width="200" height="60" rx="12" fill="#1e293b" stroke="#64748b"/>
+</svg>
