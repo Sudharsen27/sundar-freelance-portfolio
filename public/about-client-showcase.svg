@@ -1,0 +1,60 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#020617"/>
+      <stop offset="1" stop-color="#0B1120"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(330 260) rotate(39) scale(360 270)">
+      <stop stop-color="#22D3EE" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 180) rotate(140) scale(300 240)">
+      <stop stop-color="#3B82F6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0F172A" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#111827" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="900" rx="36" fill="url(#bg)"/>
+  <rect width="1200" height="900" rx="36" fill="url(#glowA)"/>
+  <rect width="1200" height="900" rx="36" fill="url(#glowB)"/>
+
+  <rect x="70" y="86" width="470" height="62" rx="31" fill="#10B981" fill-opacity="0.18" stroke="#34D399" stroke-opacity="0.45"/>
+  <text x="105" y="126" fill="#A7F3D0" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">AVAILABLE FOR NEW WORK</text>
+
+  <rect x="100" y="180" width="300" height="170" rx="20" fill="url(#card)" stroke="#1F2937"/>
+  <rect x="130" y="222" width="170" height="14" rx="7" fill="#94A3B8" fill-opacity="0.8"/>
+  <rect x="130" y="252" width="220" height="12" rx="6" fill="#64748B"/>
+  <rect x="130" y="281" width="190" height="12" rx="6" fill="#475569"/>
+
+  <rect x="820" y="160" width="280" height="150" rx="20" fill="url(#card)" stroke="#1F2937"/>
+  <rect x="850" y="205" width="170" height="12" rx="6" fill="#22D3EE" fill-opacity="0.9"/>
+  <rect x="850" y="235" width="140" height="10" rx="5" fill="#64748B"/>
+  <rect x="850" y="260" width="100" height="10" rx="5" fill="#475569"/>
+
+  <rect x="345" y="375" width="520" height="300" rx="24" fill="url(#card)" stroke="#334155"/>
+  <rect x="390" y="445" width="200" height="12" rx="6" fill="#22D3EE"/>
+  <rect x="390" y="474" width="280" height="10" rx="5" fill="#64748B"/>
+  <rect x="390" y="500" width="240" height="10" rx="5" fill="#64748B"/>
+  <rect x="390" y="526" width="320" height="10" rx="5" fill="#94A3B8"/>
+  <rect x="390" y="553" width="170" height="12" rx="6" fill="#22D3EE" fill-opacity="0.8"/>
+
+  <path d="M720 420C720 364.772 764.772 320 820 320V320C875.228 320 920 364.772 920 420V455H720V420Z" fill="#0F172A"/>
+  <circle cx="820" cy="352" r="62" fill="#111827" stroke="#334155" stroke-width="6"/>
+  <path d="M758 352C758 317.758 785.758 290 820 290C854.242 290 882 317.758 882 352" stroke="#38BDF8" stroke-width="10" stroke-linecap="round"/>
+  <rect x="742" y="352" width="22" height="40" rx="11" fill="#1E293B"/>
+  <rect x="876" y="352" width="22" height="40" rx="11" fill="#1E293B"/>
+
+  <rect x="280" y="700" width="640" height="34" rx="17" fill="#1E293B"/>
+  <rect x="100" y="755" width="260" height="72" rx="14" fill="#0F172A" stroke="#1F2937"/>
+  <rect x="390" y="755" width="260" height="72" rx="14" fill="#0F172A" stroke="#1F2937"/>
+  <rect x="680" y="755" width="260" height="72" rx="14" fill="#0F172A" stroke="#1F2937"/>
+  <rect x="970" y="755" width="130" height="72" rx="14" fill="url(#cta)" fill-opacity="0.35"/>
+</svg>

@@ -28,10 +28,9 @@ export default function About() {
                 users—schools, labs, shops, dashboards, and more.
               </p>
               <p className="text-base leading-relaxed text-slate-400 sm:text-lg">
-                If you&apos;re hiring on{" "}
-                <span className="font-medium text-slate-300">Fiverr</span> or as a
-                contractor, you get someone who communicates clearly, respects deadlines,
-                and cares about code quality—not just &quot;making it work.&quot;
+                If you&apos;re hiring for a freelance project or long-term collaboration,
+                you get someone who communicates clearly, respects deadlines, and cares
+                about code quality—not just &quot;making it work.&quot;
               </p>
               <ul className="space-y-2.5 border-t border-white/10 pt-6">
                 {highlights.map((line) => (
@@ -51,39 +50,61 @@ export default function About() {
             <div className="relative mx-auto w-full max-w-md space-y-4 lg:mx-0 lg:max-w-none">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-900/50 shadow-inner ring-1 ring-blue-500/10">
                 <Image
-                  src="/about-workspace.svg"
-                  alt="Developer working at a laptop"
+                  src="/about-client-showcase.svg"
+                  alt="Premium developer showcase visual for client trust"
                   fill
-                  className="object-cover object-center scale-[1.08]"
+                  className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   unoptimized
                 />
               </div>
-              <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4 text-center">
-                  <p className="text-2xl font-bold text-white">8+</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
-                    Live Projects
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/10 p-4">
+                  <p className="text-xs uppercase tracking-wide text-cyan-200/90">
+                    Response time
+                  </p>
+                  <p className="mt-1 text-2xl font-bold text-white">Within 24 hours</p>
+                  <p className="mt-1 text-sm text-slate-300">
+                    Quick updates and clear next steps.
                   </p>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4 text-center">
-                  <p className="text-2xl font-bold text-white">24h</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
-                    Avg Reply
+                <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 p-4">
+                  <p className="text-xs uppercase tracking-wide text-blue-200/90">
+                    Delivery focus
+                  </p>
+                  <p className="mt-1 text-2xl font-bold text-white">On-time shipping</p>
+                  <p className="mt-1 text-sm text-slate-300">
+                    Scope clarity, milestones, and quality checks.
                   </p>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4 text-center">
-                  <p className="text-2xl font-bold text-white">100%</p>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
-                    Responsive
+                <div className="rounded-xl border border-violet-500/20 bg-violet-500/10 p-4 sm:col-span-2">
+                  <p className="text-xs uppercase tracking-wide text-violet-200/90">
+                    Build quality
+                  </p>
+                  <p className="mt-1 text-xl font-bold text-white">
+                    Clean code + production-ready architecture
+                  </p>
+                  <p className="mt-1 text-sm text-slate-300">
+                    Scalable structure, responsive UI, and maintainable components from
+                    day one.
                   </p>
                 </div>
               </div>
-              <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
-                <p className="text-sm leading-relaxed text-slate-300">
-                  I focus on clear communication, clean architecture, and launch-ready
-                  delivery so your project moves fast without sacrificing quality.
+              <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4">
+                <p className="text-xs uppercase tracking-wide text-slate-400">
+                  What clients get
                 </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200">
+                    Weekly progress updates
+                  </span>
+                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200">
+                    Source code handover
+                  </span>
+                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200">
+                    Post-launch support
+                  </span>
+                </div>
               </div>
             </div>
           </div>
