@@ -79,7 +79,7 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
           {projects.map((project) => (
             <article
               key={project.title}
@@ -98,7 +98,7 @@ export default function Projects() {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-1 flex-col gap-4 p-6">
+              <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
                 <h3 className="text-lg font-bold text-white sm:text-xl">
                   {project.title}
                 </h3>

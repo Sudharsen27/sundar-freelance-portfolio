@@ -91,7 +91,7 @@ export default function Services() {
           {top.map((item) => (
             <article
               key={item.id}
-              className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-purple-500/25 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.25)]"
+              className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-purple-500/25 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.25)] sm:p-7"
             >
               <div className="mb-4">
                 <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-200">
@@ -109,7 +109,7 @@ export default function Services() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                 {item.description}
               </p>
-              <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-3 text-center">
+              <div className="mt-4 grid grid-cols-3 gap-1.5 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:gap-2 sm:p-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Starting at
@@ -135,7 +135,7 @@ export default function Services() {
                   </p>
                 </div>
               </div>
-              <div className="mt-6 border-t border-white/10 pt-5">
+              <div className="mt-5 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
                 <div className="flex flex-wrap gap-2">
                   {item.stack.map((tech) => (
                     <span
@@ -155,7 +155,7 @@ export default function Services() {
           {bottom.map((item) => (
             <article
               key={item.id}
-              className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-blue-500/25 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)]"
+              className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-blue-500/25 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)] sm:p-7"
             >
               <div className="mb-4">
                 <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-200">
@@ -173,7 +173,7 @@ export default function Services() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                 {item.description}
               </p>
-              <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-3 text-center">
+              <div className="mt-4 grid grid-cols-3 gap-1.5 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:gap-2 sm:p-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Starting at
@@ -199,7 +199,7 @@ export default function Services() {
                   </p>
                 </div>
               </div>
-              <div className="mt-6 border-t border-white/10 pt-5">
+              <div className="mt-5 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
                 <div className="flex flex-wrap gap-2">
                   {item.stack.map((tech) => (
                     <span

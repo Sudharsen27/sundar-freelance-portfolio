@@ -28,16 +28,16 @@ export default function Hero() {
           <p className="text-sm text-slate-500">
             8+ live projects shipped · From MVPs to production systems
           </p>
-          <div className="flex flex-wrap gap-3 pt-1">
+          <div className="grid grid-cols-1 gap-3 pt-1 sm:flex sm:flex-wrap">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/35"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/35 sm:w-auto sm:px-7"
             >
               Discuss your project
             </a>
             <a
               href="#projects"
-              className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
+              className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10 sm:w-auto sm:px-7"
             >
               See work &amp; results
             </a>

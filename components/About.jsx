@@ -48,16 +48,42 @@ export default function About() {
                 ))}
               </ul>
             </div>
-            <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
+            <div className="relative mx-auto w-full max-w-md space-y-4 lg:mx-0 lg:max-w-none">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-900/50 shadow-inner ring-1 ring-blue-500/10">
                 <Image
                   src="/about-workspace.svg"
                   alt="Developer working at a laptop"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center scale-[1.08]"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   unoptimized
                 />
+              </div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4 text-center">
+                  <p className="text-2xl font-bold text-white">8+</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
+                    Live Projects
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4 text-center">
+                  <p className="text-2xl font-bold text-white">24h</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
+                    Avg Reply
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4 text-center">
+                  <p className="text-2xl font-bold text-white">100%</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
+                    Responsive
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
+                <p className="text-sm leading-relaxed text-slate-300">
+                  I focus on clear communication, clean architecture, and launch-ready
+                  delivery so your project moves fast without sacrificing quality.
+                </p>
               </div>
             </div>
           </div>

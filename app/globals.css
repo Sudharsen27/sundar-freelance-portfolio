@@ -9,6 +9,7 @@ html {
 body {
   color: #e5e7eb;
   background: linear-gradient(135deg, #0f172a 0%, #030712 45%, #000000 100%);
+  overflow-x: hidden;
 }
 
 .section-shell {

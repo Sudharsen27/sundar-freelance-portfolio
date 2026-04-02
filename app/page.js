@@ -7,8 +7,53 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 
 export default function Home() {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Sundar Lingam",
+    url: siteUrl,
+    jobTitle: "Full-Stack Developer",
+    email: "mailto:sundarlingam272000@gmail.com",
+    telephone: "+916382519651",
+    sameAs: [
+      "https://github.com/Sudharsen27",
+      "https://www.linkedin.com/in/sundar-lingam",
+    ],
+    knowsAbout: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Tailwind CSS",
+      "REST API",
+      "PostgreSQL",
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Sundar Lingam Portfolio",
+    url: siteUrl,
+    inLanguage: "en",
+    potentialAction: {
+      "@type": "ContactAction",
+      target: `${siteUrl}/#contact`,
+      name: "Contact Sundar Lingam",
+    },
+  };
+
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <Navbar />
 
       <main className="pb-20 pt-8 sm:pb-24">
@@ -33,15 +78,15 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="mb-10 rounded-2xl border border-white/[0.07] bg-slate-950/50 px-6 py-10 text-center backdrop-blur-sm">
-        <p className="mb-6 text-sm text-slate-400">
+      <footer className="mb-10 rounded-2xl border border-white/[0.07] bg-slate-950/50 px-4 py-8 text-center backdrop-blur-sm sm:px-6 sm:py-10">
+        <p className="mb-6 flex flex-col items-center gap-1 text-sm text-slate-400 sm:flex-row sm:justify-center sm:gap-0">
           <a
             href="mailto:sundarlingam272000@gmail.com"
             className="font-medium text-slate-300 underline decoration-slate-600 underline-offset-2 hover:text-white"
           >
             sundarlingam272000@gmail.com
           </a>
-          <span className="mx-2 text-slate-600" aria-hidden>
+          <span className="mx-2 hidden text-slate-600 sm:inline" aria-hidden>
             {"\u00b7"}
           </span>
           <a href="tel:+916382519651" className="hover:text-slate-300">
