@@ -1,226 +1,69 @@
-function ServiceIcon({ type, gradientId }) {
-  const gid = `svc-${gradientId}`;
-  const grad = (
-    <defs>
-      <linearGradient id={gid} x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#f472b6" />
-        <stop offset="35%" stopColor="#a78bfa" />
-        <stop offset="70%" stopColor="#60a5fa" />
-        <stop offset="100%" stopColor="#fb923c" />
-      </linearGradient>
-    </defs>
-  );
-
-  switch (type) {
-    case "fullstack":
-      return (
-        <svg
-          className="h-16 w-16 shrink-0"
-          viewBox="0 0 64 64"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          {grad}
-          <rect
-            x="8"
-            y="14"
-            width="40"
-            height="28"
-            rx="3"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-          />
-          <path
-            d="M14 22h20M14 28h16M14 34h20"
-            stroke={`url(#${gid})`}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <circle
-            cx="52"
-            cy="22"
-            r="8"
-            stroke={`url(#${gid})`}
-            strokeWidth="2"
-          />
-          <path
-            d="M52 18v8M48 22h8"
-            stroke={`url(#${gid})`}
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "frontend":
-      return (
-        <svg
-          className="h-16 w-16 shrink-0"
-          viewBox="0 0 64 64"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          {grad}
-          <rect
-            x="18"
-            y="8"
-            width="28"
-            height="48"
-            rx="4"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-          />
-          <path
-            d="M26 16h12M26 22h12"
-            stroke={`url(#${gid})`}
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-          <path
-            d="M22 36c8-6 20-2 22 10"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M38 32l6-4 2 8-8 2z"
-            fill={`url(#${gid})`}
-            opacity="0.9"
-          />
-        </svg>
-      );
-    case "api":
-      return (
-        <svg
-          className="h-16 w-16 shrink-0"
-          viewBox="0 0 64 64"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          {grad}
-          <circle cx="20" cy="32" r="10" stroke={`url(#${gid})`} strokeWidth="2.5" />
-          <circle cx="44" cy="22" r="8" stroke={`url(#${gid})`} strokeWidth="2.5" />
-          <circle cx="44" cy="42" r="8" stroke={`url(#${gid})`} strokeWidth="2.5" />
-          <path
-            d="M28 28l10-4M28 36l10 4M36 22l4 6M36 42l4-6"
-            stroke={`url(#${gid})`}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "bug":
-      return (
-        <svg
-          className="h-16 w-16 shrink-0"
-          viewBox="0 0 64 64"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          {grad}
-          <ellipse
-            cx="32"
-            cy="34"
-            rx="14"
-            ry="10"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-          />
-          <path
-            d="M22 28c-2-4 2-8 10-8s12 4 10 8"
-            stroke={`url(#${gid})`}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M26 38h4M34 38h4"
-            stroke={`url(#${gid})`}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M46 18l8-4M50 22l6-2"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "cloud":
-      return (
-        <svg
-          className="h-16 w-16 shrink-0"
-          viewBox="0 0 64 64"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          {grad}
-          <path
-            d="M18 40c-4 0-8-4-8-9 0-5 4-9 9-9h2a12 12 0 0 1 22-4 8 8 0 0 1 15 6c0 4-3 7-7 7H18z"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M32 28v14M26 35l6-7 6 7"
-            stroke={`url(#${gid})`}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
 const services = [
   {
-    title: "Full-Stack Web Development",
-    description: "Building scalable and responsive web applications.",
-    stack: "React, Next.js, Node.js, PostgreSQL",
-    iconType: "fullstack",
     id: "fullstack",
+    badge: "FS",
+    title: "Full-Stack Web Development",
+    description:
+      "End-to-end product development from frontend to backend with clean architecture and production-ready delivery.",
+    stack: ["React", "Next.js", "Node.js", "PostgreSQL"],
+    highlight: "Best for: MVP to scale",
+    startingAt: "$250",
+    delivery: "5-7 days",
+    revisions: "2 revisions",
   },
   {
-    title: "Modern Frontend Development",
-    description: "Creating sleek and user-friendly interfaces.",
-    stack: "React, Tailwind CSS",
-    iconType: "frontend",
     id: "frontend",
+    badge: "UI",
+    title: "Modern Frontend Development",
+    description:
+      "Pixel-perfect, responsive, and high-performance interfaces focused on conversion and user experience.",
+    stack: ["React", "Tailwind CSS", "TypeScript"],
+    highlight: "Best for: Landing pages & dashboards",
+    startingAt: "$120",
+    delivery: "2-4 days",
+    revisions: "2 revisions",
   },
   {
-    title: "API Development & Integration",
-    description: "Secure REST APIs and third-party integrations.",
-    stack: "Node.js, REST API, JWT",
-    iconType: "api",
     id: "api",
+    badge: "API",
+    title: "API Development & Integration",
+    description:
+      "Secure and scalable APIs with reliable third-party integrations, auth flows, and robust data handling.",
+    stack: ["Node.js", "REST API", "JWT", "Webhooks"],
+    highlight: "Best for: SaaS integrations",
+    startingAt: "$180",
+    delivery: "3-5 days",
+    revisions: "2 revisions",
   },
   {
-    title: "Bug Fixing & Optimization",
-    description: "Fixing issues and boosting performance.",
-    stack: "Debugging & Optimization",
-    iconType: "bug",
     id: "bug",
+    badge: "FIX",
+    title: "Bug Fixing & Optimization",
+    description:
+      "Quick bug resolution, code refactoring, and measurable performance improvements for existing apps.",
+    stack: ["Debugging", "Refactoring", "Core Web Vitals"],
+    highlight: "Best for: Existing projects",
+    startingAt: "$80",
+    delivery: "1-3 days",
+    revisions: "3 revisions",
   },
   {
-    title: "Deployment & Cloud Setup",
-    description: "Deploying apps on AWS, Vercel, Cloudflare.",
-    stack: "AWS, Vercel, Cloudflare",
-    iconType: "cloud",
     id: "cloud",
+    badge: "OPS",
+    title: "Deployment & Cloud Setup",
+    description:
+      "Smooth deployment pipelines and cloud setup with monitoring, SSL, and reliable production configuration.",
+    stack: ["AWS", "Vercel", "Cloudflare", "CI/CD"],
+    highlight: "Best for: Launch-ready delivery",
+    startingAt: "$150",
+    delivery: "2-4 days",
+    revisions: "2 revisions",
   },
 ];
 
 export default function Services() {
-  const [a, b, c, d, e] = services;
+  const top = services.slice(0, 3);
+  const bottom = services.slice(3, 5);
 
   return (
     <section id="services" className="relative scroll-mt-28">
@@ -239,58 +82,134 @@ export default function Services() {
             My Services
           </h2>
           <p className="mt-3 text-base text-slate-400 sm:text-lg">
-            Packages and custom work—tell me your goal and I&apos;ll propose the right
-            stack and timeline.
+            Professional service packages tailored for modern web products and
+            freelance business outcomes.
           </p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[a, b, c].map((item) => (
+          {top.map((item) => (
             <article
               key={item.id}
               className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-purple-500/25 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.25)]"
             >
-              <div className="mb-5 flex justify-center">
-                <div className="rounded-2xl bg-slate-900/80 p-4 ring-1 ring-white/5 transition group-hover:ring-purple-500/20">
-                  <ServiceIcon type={item.iconType} gradientId={item.id} />
-                </div>
+              <div className="mb-4">
+                <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-200">
+                  {item.highlight}
+                </span>
               </div>
-              <h3 className="text-center text-lg font-bold text-white sm:text-xl">
-                {item.title}
-              </h3>
-              <p className="mt-3 flex-1 text-center text-sm leading-relaxed text-slate-400">
+              <div className="flex items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-purple-500/30 bg-purple-500/10 text-[11px] font-bold uppercase tracking-wide text-purple-200">
+                  {item.badge}
+                </span>
+                <h3 className="text-lg font-bold text-white sm:text-xl">
+                  {item.title}
+                </h3>
+              </div>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                 {item.description}
               </p>
+              <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-3 text-center">
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                    Starting at
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                    {item.startingAt}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                    Delivery
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                    {item.delivery}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                    Revisions
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                    {item.revisions}
+                  </p>
+                </div>
+              </div>
               <div className="mt-6 border-t border-white/10 pt-5">
-                <p className="text-center text-xs leading-relaxed text-slate-500">
-                  {item.stack}
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {item.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-white/10 bg-slate-900/70 px-2.5 py-1 text-[11px] font-medium text-slate-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
         </div>
 
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
-          {[d, e].map((item) => (
+          {bottom.map((item) => (
             <article
               key={item.id}
               className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-blue-500/25 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)]"
             >
-              <div className="mb-5 flex justify-center">
-                <div className="rounded-2xl bg-slate-900/80 p-4 ring-1 ring-white/5 transition group-hover:ring-blue-500/20">
-                  <ServiceIcon type={item.iconType} gradientId={item.id} />
-                </div>
+              <div className="mb-4">
+                <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-200">
+                  {item.highlight}
+                </span>
               </div>
-              <h3 className="text-center text-lg font-bold text-white sm:text-xl">
-                {item.title}
-              </h3>
-              <p className="mt-3 flex-1 text-center text-sm leading-relaxed text-slate-400">
+              <div className="flex items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/10 text-[11px] font-bold uppercase tracking-wide text-blue-200">
+                  {item.badge}
+                </span>
+                <h3 className="text-lg font-bold text-white sm:text-xl">
+                  {item.title}
+                </h3>
+              </div>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                 {item.description}
               </p>
+              <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-3 text-center">
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                    Starting at
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                    {item.startingAt}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                    Delivery
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                    {item.delivery}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                    Revisions
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                    {item.revisions}
+                  </p>
+                </div>
+              </div>
               <div className="mt-6 border-t border-white/10 pt-5">
-                <p className="text-center text-xs leading-relaxed text-slate-500">
-                  {item.stack}
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {item.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-white/10 bg-slate-900/70 px-2.5 py-1 text-[11px] font-medium text-slate-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
