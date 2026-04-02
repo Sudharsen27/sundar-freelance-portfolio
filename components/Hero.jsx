@@ -1,6 +1,18 @@
+"use client";
+
 import Image from "next/image";
 
 export default function Hero() {
+  const handleScroll = (event, sectionId) => {
+    event.preventDefault();
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  };
+
   return (
     <section id="home" className="scroll-mt-28">
       <div className="section-balance grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -30,13 +42,15 @@ export default function Hero() {
           </p>
           <div className="grid grid-cols-1 gap-3 pt-1 sm:flex sm:flex-wrap">
             <a
-              href="#contact"
+              href="/"
+              onClick={(e) => handleScroll(e, "contact")}
               className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/35 sm:w-auto sm:px-7"
             >
               Discuss your project
             </a>
             <a
-              href="#projects"
+              href="/"
+              onClick={(e) => handleScroll(e, "projects")}
               className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10 sm:w-auto sm:px-7"
             >
               See work &amp; results
@@ -48,7 +62,7 @@ export default function Hero() {
             <div className="relative aspect-square overflow-hidden rounded-lg bg-slate-900/60">
               <Image
                 src="/hero-developer.svg"
-                alt="Developer illustration"
+                alt="Modern developer showcase illustration"
                 fill
                 className="object-cover"
                 priority

@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.className} min-h-screen antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
