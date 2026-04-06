@@ -137,7 +137,7 @@ export default function Navbar() {
         </div>
 
         <div className={`${isOpen ? "mt-3 block" : "hidden"} sm:mt-0 sm:block`}>
-          <ul className="flex flex-col gap-1 rounded-xl border border-white/10 bg-white/[0.02] p-2 text-sm sm:flex-row sm:items-center sm:justify-end sm:gap-2 sm:border-0 sm:bg-transparent sm:p-0 sm:text-base">
+          <ul className="flex flex-col gap-1 rounded-xl border border-white/10 bg-white/[0.03] p-2 text-sm shadow-[0_10px_30px_-22px_rgba(15,23,42,0.9)] sm:flex-row sm:items-center sm:justify-end sm:gap-2 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none sm:text-base">
             {links.map(({ id, label, path }) => (
               <li key={id}>
                 <a
@@ -147,7 +147,7 @@ export default function Navbar() {
                     closeMenu();
                     scrollToSection(id, path);
                   }}
-                  className="block rounded-lg px-3 py-1.5 text-slate-300 transition hover:bg-white/10 hover:text-white"
+                  className="block rounded-lg px-3 py-1.5 text-slate-300 transition hover:bg-cyan-500/10 hover:text-white"
                 >
                   {label}
                 </a>
@@ -160,7 +160,7 @@ export default function Navbar() {
                   closeMenu();
                   setShowHireModal(true);
                 }}
-                className="inline-flex w-full justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-cyan-500/20 transition hover:scale-[1.02] sm:w-auto sm:py-1.5"
+                className="cta-primary inline-flex w-full justify-center rounded-lg px-4 py-2 text-sm font-semibold sm:w-auto sm:py-1.5"
               >
                 Hire me
               </button>

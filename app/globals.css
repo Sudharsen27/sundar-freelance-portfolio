@@ -12,6 +12,11 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: #f8fafc;
+}
+
 .section-shell {
   @apply rounded-xl border border-white/15 bg-white/5 shadow-glass backdrop-blur-md;
 }
@@ -22,4 +27,12 @@ body {
 
 .section-balance {
   @apply mx-auto w-full max-w-6xl;
+}
+
+.premium-card {
+  @apply rounded-2xl border border-white/10 bg-slate-950/60 backdrop-blur-sm shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_20px_55px_-24px_rgba(15,23,42,0.95)] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/25 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.18),0_26px_60px_-24px_rgba(37,99,235,0.45)];
+}
+
+.cta-primary {
+  @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-blue-600 text-white ring-1 ring-cyan-300/40 shadow-[0_14px_36px_-12px_rgba(6,182,212,0.8)] transition duration-200 hover:scale-[1.04] hover:shadow-[0_20px_48px_-14px_rgba(6,182,212,0.95)] hover:ring-cyan-200/60;
 }

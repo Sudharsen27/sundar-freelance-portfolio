@@ -91,7 +91,7 @@ export default function Projects() {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-950/50 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-blue-500/20 hover:shadow-[0_25px_60px_-20px_rgba(37,99,235,0.2)]"
+              className="premium-card group flex h-full flex-col overflow-hidden"
             >
               <div
                 className={`relative aspect-video overflow-hidden bg-gradient-to-br ${project.gradient}`}
@@ -130,7 +130,7 @@ export default function Projects() {
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 flex w-full items-center justify-center rounded-xl bg-gradient-to-b from-slate-800 to-blue-950 py-3 text-sm font-semibold text-white shadow-inner ring-1 ring-white/5 transition hover:from-slate-700 hover:to-blue-900"
+                  className="cta-primary mt-2 flex w-full items-center justify-center rounded-xl py-3 text-sm font-semibold"
                 >
                   View Project
                 </a>

@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   const siteUrl =
@@ -61,33 +62,34 @@ export default function Home() {
       />
       <Navbar />
 
-      <main className="pb-20 pt-8 sm:pb-24">
+      <main className="pb-20 pt-10 sm:pb-24 sm:pt-12">
         <Hero />
 
         <div className="mt-16 space-y-0 sm:mt-20">
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <About />
           </div>
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <ValueProps />
           </div>
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <Services />
           </div>
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <Projects />
           </div>
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <Testimonials />
           </div>
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <FAQ />
           </div>
-          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+          <div className="border-t border-white/[0.06] pt-14 sm:pt-20">
             <Contact />
           </div>
         </div>
       </main>
+      <FloatingWhatsApp />
 
       <footer className="mb-10 rounded-2xl border border-white/[0.07] bg-slate-950/50 px-4 py-8 text-center backdrop-blur-sm sm:px-6 sm:py-10">
         <p className="mb-6 flex flex-col items-center gap-1 text-sm text-slate-400 sm:flex-row sm:justify-center sm:gap-0">

@@ -103,7 +103,7 @@ export default function Contact() {
           </a>
         </div>
         <form
-          className="rounded-2xl border border-white/[0.08] bg-slate-950/50 p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.45)] backdrop-blur-sm sm:p-8"
+          className="premium-card p-6 sm:p-8"
           onSubmit={onSubmit}
         >
           <div className="space-y-5">
@@ -274,7 +274,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full rounded-xl bg-blue-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-950/40 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/60 disabled:cursor-not-allowed disabled:opacity-60"
+                className="cta-primary w-full rounded-xl py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {status === "sending" ? "Sending..." : "Send message"}
               </button>

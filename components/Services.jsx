@@ -89,17 +89,14 @@ export default function Services() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {top.map((item) => (
-            <article
-              key={item.id}
-              className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-purple-500/25 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.25)] sm:p-7"
-            >
+            <article key={item.id} className="premium-card group flex flex-col p-5 sm:p-7">
               <div className="mb-4">
-                <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-200">
+                <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
                   {item.highlight}
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-purple-500/30 bg-purple-500/10 text-[11px] font-bold uppercase tracking-wide text-purple-200">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-[11px] font-bold uppercase tracking-wide text-cyan-200">
                   {item.badge}
                 </span>
                 <h3 className="text-lg font-bold text-white sm:text-xl">
@@ -153,10 +150,7 @@ export default function Services() {
 
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
           {bottom.map((item) => (
-            <article
-              key={item.id}
-              className="group flex flex-col rounded-2xl border border-white/[0.08] bg-slate-950/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-blue-500/25 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)] sm:p-7"
-            >
+            <article key={item.id} className="premium-card group flex flex-col p-5 sm:p-7">
               <div className="mb-4">
                 <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-200">
                   {item.highlight}
