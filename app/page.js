@@ -4,11 +4,16 @@ import About from "@/components/About";
 import ValueProps from "@/components/ValueProps";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 
 export default function Home() {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
+  const linkedInUrl =
+    process.env.NEXT_PUBLIC_LINKEDIN_URL ||
+    "https://www.linkedin.com/in/sundar-lingam";
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -19,7 +24,7 @@ export default function Home() {
     telephone: "+916382519651",
     sameAs: [
       "https://github.com/Sudharsen27",
-      "https://www.linkedin.com/in/sundar-lingam",
+      linkedInUrl,
     ],
     knowsAbout: [
       "React",
@@ -73,6 +78,12 @@ export default function Home() {
             <Projects />
           </div>
           <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+            <Testimonials />
+          </div>
+          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
+            <FAQ />
+          </div>
+          <div className="border-t border-white/[0.06] pt-16 sm:pt-20">
             <Contact />
           </div>
         </div>
@@ -106,7 +117,7 @@ export default function Home() {
             </svg>
           </a>
           <a
-            href="https://www.linkedin.com/in/sundar-lingam"
+            href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"

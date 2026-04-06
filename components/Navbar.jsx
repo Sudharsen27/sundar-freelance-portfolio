@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+const FIVERR_GIG_URL =
+  process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
+
 const links = [
   { id: "home", label: "Home", path: "/home" },
   { id: "about", label: "About", path: "/about" },
@@ -202,7 +205,7 @@ export default function Navbar() {
                 Open Contact Form
               </button>
               <a
-                href="https://www.fiverr.com/"
+                href={FIVERR_GIG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeHireModal}

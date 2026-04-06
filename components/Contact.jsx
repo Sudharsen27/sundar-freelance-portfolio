@@ -2,18 +2,32 @@
 
 import { useMemo, useState } from "react";
 
-const FIVERR_GIG_URL = "https://www.fiverr.com/";
+const FIVERR_GIG_URL =
+  process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
 const WHATSAPP_NUMBER = "916382519651";
 
-function buildWhatsAppLink({ name, email, message }) {
-  const text = `Hi Sundar, I'm ${name}.\n\nEmail: ${email}\n\nProject details:\n${message}`;
+function buildWhatsAppLink({ name, email, service, budget, timeline, message }) {
+  const text =
+    `Hi Sundar, I'm ${name}.\n\n` +
+    `Email: ${email}\n` +
+    `Service needed: ${service}\n` +
+    `Budget range: ${budget}\n` +
+    `Timeline: ${timeline}\n\n` +
+    `Project details:\n${message}`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 export default function Contact() {
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const [error, setError] = useState("");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    service: "",
+    budget: "",
+    timeline: "",
+    message: "",
+  });
 
   const whatsappHref = useMemo(() => buildWhatsAppLink(form), [form]);
 
@@ -29,6 +43,9 @@ export default function Contact() {
         body: JSON.stringify({
           name: form.name,
           email: form.email,
+          service: form.service,
+          budget: form.budget,
+          timeline: form.timeline,
           message: form.message,
           website: "", // honeypot
         }),
@@ -40,7 +57,14 @@ export default function Contact() {
       }
 
       setStatus("sent");
-      setForm({ name: "", email: "", message: "" });
+      setForm({
+        name: "",
+        email: "",
+        service: "",
+        budget: "",
+        timeline: "",
+        message: "",
+      });
     } catch (err) {
       setStatus("error");
       setError(err?.message || "Failed to send message.");
@@ -148,6 +172,103 @@ export default function Contact() {
                   setForm((p) => ({ ...p, message: e.target.value }))
                 }
               />
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="service"
+                  className="mb-2 block text-sm font-medium text-slate-300"
+                >
+                  Service needed
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  required
+                  className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
+                  value={form.service}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, service: e.target.value }))
+                  }
+                >
+                  <option value="" disabled>
+                    Select a service
+                  </option>
+                  <option value="Full-Stack Web Development">
+                    Full-Stack Web Development
+                  </option>
+                  <option value="Modern Frontend Development">
+                    Modern Frontend Development
+                  </option>
+                  <option value="API Development & Integration">
+                    API Development & Integration
+                  </option>
+                  <option value="Bug Fixing & Optimization">
+                    Bug Fixing & Optimization
+                  </option>
+                  <option value="Deployment & Cloud Setup">
+                    Deployment & Cloud Setup
+                  </option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="budget"
+                  className="mb-2 block text-sm font-medium text-slate-300"
+                >
+                  Budget range
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  required
+                  className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
+                  value={form.budget}
+                  onChange={(e) => setForm((p) => ({ ...p, budget: e.target.value }))}
+                >
+                  <option value="" disabled>
+                    Select budget
+                  </option>
+                  <option value="Under USD 250 (INR 20k approx.)">
+                    Under USD 250 (INR 20k approx.)
+                  </option>
+                  <option value="USD 250–500 (INR 20k–42k approx.)">
+                    USD 250-500 (INR 20k-42k approx.)
+                  </option>
+                  <option value="USD 500–1000 (INR 42k–84k approx.)">
+                    USD 500-1000 (INR 42k-84k approx.)
+                  </option>
+                  <option value="USD 1000+ (INR 84k+ approx.)">
+                    USD 1000+ (INR 84k+ approx.)
+                  </option>
+                  <option value="Let us discuss">Let us discuss</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="timeline"
+                className="mb-2 block text-sm font-medium text-slate-300"
+              >
+                Project timeline
+              </label>
+              <select
+                id="timeline"
+                name="timeline"
+                required
+                className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
+                value={form.timeline}
+                onChange={(e) => setForm((p) => ({ ...p, timeline: e.target.value }))}
+              >
+                <option value="" disabled>
+                  Select timeline
+                </option>
+                <option value="ASAP (within 3 days)">ASAP (within 3 days)</option>
+                <option value="Within 1 week">Within 1 week</option>
+                <option value="Within 2-4 weeks">Within 2-4 weeks</option>
+                <option value="Flexible">Flexible</option>
+              </select>
             </div>
             <div className="pt-2 space-y-3">
               <button

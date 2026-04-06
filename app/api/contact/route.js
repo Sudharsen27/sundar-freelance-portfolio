@@ -16,6 +16,9 @@ export async function POST(request) {
     const {
       name = "",
       email = "",
+      service = "",
+      budget = "",
+      timeline = "",
       message = "",
       website = "", // honeypot (should be empty)
     } = await request.json();
@@ -24,7 +27,7 @@ export async function POST(request) {
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
-    if (!name || !email || !message) {
+    if (!name || !email || !service || !budget || !timeline || !message) {
       return NextResponse.json(
         { success: false, message: "Please fill in all fields." },
         { status: 400 }
@@ -57,12 +60,21 @@ export async function POST(request) {
       to,
       replyTo: email,
       subject: `New Portfolio Lead: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
+      text:
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Service needed: ${service}\n` +
+        `Budget range: ${budget}\n` +
+        `Timeline: ${timeline}\n\n` +
+        `Message:\n${message}\n`,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.5">
           <h2 style="margin:0 0 12px">New Portfolio Lead</h2>
           <p style="margin:0 0 6px"><b>Name:</b> ${String(name)}</p>
-          <p style="margin:0 0 12px"><b>Email:</b> ${String(email)}</p>
+          <p style="margin:0 0 6px"><b>Email:</b> ${String(email)}</p>
+          <p style="margin:0 0 6px"><b>Service needed:</b> ${String(service)}</p>
+          <p style="margin:0 0 6px"><b>Budget range:</b> ${String(budget)}</p>
+          <p style="margin:0 0 12px"><b>Timeline:</b> ${String(timeline)}</p>
           <p style="margin:0"><b>Message:</b></p>
           <pre style="white-space:pre-wrap;margin:8px 0 0;padding:12px;background:#f6f7f9;border-radius:8px">${String(
             message
@@ -79,6 +91,10 @@ export async function POST(request) {
       text:
         `Hi ${name},\n\n` +
         `Thanks for reaching out. I’ve received your message and I’ll reply within 24 hours.\n\n` +
+        `Here’s what I captured:\n` +
+        `- Service needed: ${service}\n` +
+        `- Budget range: ${budget}\n` +
+        `- Timeline: ${timeline}\n\n` +
         `— Sundar\n`,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6">
@@ -86,6 +102,12 @@ export async function POST(request) {
           <p style="margin:0 0 12px">
             Thanks for reaching out. I’ve received your message and I’ll reply within
             <b>24 hours</b>.
+          </p>
+          <p style="margin:0 0 12px">
+            Here’s what I captured:
+            <br />- <b>Service needed:</b> ${String(service)}
+            <br />- <b>Budget range:</b> ${String(budget)}
+            <br />- <b>Timeline:</b> ${String(timeline)}
           </p>
           <p style="margin:0">— Sundar</p>
         </div>
