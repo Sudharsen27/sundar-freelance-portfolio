@@ -59,12 +59,12 @@ export default function Hero() {
         </div>
         <div className="relative mx-auto w-full max-w-md lg:max-w-none">
           <div className="section-shell overflow-hidden rounded-xl p-2 transition hover:scale-[1.02] hover:shadow-glass">
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-slate-900/60">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-lg bg-slate-900/60 sm:aspect-[4/3]">
               <Image
-                src="/hero-developer.svg"
-                alt="Modern developer showcase illustration"
+                src="/b52a518b-1db6-482f-9dc4-135d10be264c.png"
+                alt="Hero showcase image"
                 fill
-                className="object-cover"
+                className="object-cover object-center scale-[1.04] sm:scale-[1.08] lg:scale-[1.12]"
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 unoptimized

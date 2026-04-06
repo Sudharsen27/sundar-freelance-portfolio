@@ -50,8 +50,8 @@ export default function About() {
             <div className="relative mx-auto w-full max-w-md space-y-4 lg:mx-0 lg:max-w-none">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-900/50 shadow-inner ring-1 ring-blue-500/10">
                 <Image
-                  src="/about-client-showcase.svg"
-                  alt="Premium developer showcase visual for client trust"
+                  src="/about.png"
+                  alt="About me showcase image"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
