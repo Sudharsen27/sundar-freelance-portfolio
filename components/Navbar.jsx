@@ -1,5 +1,6 @@
  "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const FIVERR_GIG_URL =
@@ -78,9 +79,21 @@ export default function Navbar() {
               closeMenu();
               scrollToSection("home", "/home");
             }}
-            className="shrink-0 text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300"
+            className="inline-flex shrink-0 items-center gap-2.5 rounded-xl border border-white/10 bg-slate-900/60 px-2.5 py-1.5 text-lg font-semibold tracking-tight text-white shadow-[0_8px_24px_-14px_rgba(59,130,246,0.6)] ring-1 ring-cyan-400/10 transition hover:border-cyan-300/25 hover:bg-slate-900/80"
           >
-            Sundar
+            <span className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-cyan-300/20 bg-slate-950/70 ring-1 ring-cyan-400/20">
+              <Image
+                src="/icon.svg"
+                alt="Sundar logo"
+                width={34}
+                height={34}
+                className="h-8 w-8"
+                priority
+              />
+            </span>
+            <span className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-[1.05rem] font-semibold text-transparent">
+              Sundar
+            </span>
           </a>
 
           <button

@@ -7,6 +7,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: ["/icon.svg", "/icon.png"],
+    apple: "/icon.png",
+  },
   title: {
     default:
       "Sundar Lingam | React & Next.js Developer for Hire | Freelance Full-Stack",
