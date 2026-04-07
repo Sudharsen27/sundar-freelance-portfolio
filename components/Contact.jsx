@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from "react";
 
+import { whatsappUrl } from "@/lib/whatsapp";
+
 const FIVERR_GIG_URL =
   process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
-const WHATSAPP_NUMBER = "916382519651";
 
 function buildWhatsAppLink({ name, email, service, budget, timeline, message }) {
   const text =
@@ -14,7 +15,7 @@ function buildWhatsAppLink({ name, email, service, budget, timeline, message }) 
     `Budget range: ${budget}\n` +
     `Timeline: ${timeline}\n\n` +
     `Project details:\n${message}`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  return whatsappUrl(text);
 }
 
 export default function Contact() {

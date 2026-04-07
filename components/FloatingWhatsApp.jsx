@@ -1,14 +1,12 @@
-const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "911234567890";
+import { whatsappUrl } from "@/lib/whatsapp";
 
-const WHATSAPP_TEXT = encodeURIComponent(
-  "Hi, I saw your portfolio and want to discuss a project."
-);
+const DEFAULT_MESSAGE =
+  "Hi, I saw your portfolio and want to discuss a project.";
 
 export default function FloatingWhatsApp() {
   return (
     <a
-      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`}
+      href={whatsappUrl(DEFAULT_MESSAGE)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

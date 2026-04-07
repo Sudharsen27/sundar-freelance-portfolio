@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { whatsappUrl } from "@/lib/whatsapp";
 
 const FIVERR_GIG_URL =
   process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
@@ -199,7 +200,9 @@ export default function Navbar() {
 
             <div className="space-y-3">
               <a
-                href="https://wa.me/916382519651?text=Hi%20Sundar%2C%20I%20want%20to%20hire%20you%20for%20a%20project."
+                href={whatsappUrl(
+                  "Hi Sundar, I want to hire you for a project."
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeHireModal}

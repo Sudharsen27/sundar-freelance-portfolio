@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import { whatsappUrl } from "@/lib/whatsapp";
 
 export default function Home() {
   const siteUrl =
@@ -130,7 +131,7 @@ export default function Home() {
             </svg>
           </a>
           <a
-            href="https://wa.me/916382519651"
+            href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
