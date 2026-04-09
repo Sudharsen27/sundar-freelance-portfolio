@@ -24,10 +24,7 @@ export default function Home() {
     jobTitle: "Full-Stack Developer",
     email: "mailto:sundarlingam272000@gmail.com",
     telephone: "+916382519651",
-    sameAs: [
-      "https://github.com/Sudharsen27",
-      linkedInUrl,
-    ],
+    sameAs: ["https://github.com/Sudharsen27", linkedInUrl],
     knowsAbout: [
       "React",
       "Next.js",
@@ -142,9 +139,7 @@ export default function Home() {
             </svg>
           </a>
         </div>
-        <p className="text-sm text-slate-400">
-          {"Sundar \u00a9 2026 | All Rights Reserved"}
-        </p>
+        <p className="text-sm text-slate-400">{"Sundar \u00a9 2026 | All Rights Reserved"}</p>
       </footer>
     </div>
   );

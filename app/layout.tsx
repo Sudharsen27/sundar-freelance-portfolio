@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -5,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   icons: {
     icon: [
@@ -16,8 +17,7 @@ export const metadata = {
     apple: "/icon.png",
   },
   title: {
-    default:
-      "Sundar Lingam | React & Next.js Developer for Hire | Freelance Full-Stack",
+    default: "Sundar Lingam | Full-Stack Web Developer",
     template: "%s | Sundar Lingam",
   },
   description:
@@ -73,7 +73,11 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen antialiased`}>

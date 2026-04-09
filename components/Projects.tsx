@@ -1,4 +1,13 @@
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  result: string;
+  href: string;
+  gradient: string;
+};
+
+const projects: Project[] = [
   {
     title: "School of Sustainability",
     description:

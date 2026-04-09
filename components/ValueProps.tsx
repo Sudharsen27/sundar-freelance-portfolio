@@ -19,11 +19,7 @@ const points = [
 
 export default function ValueProps() {
   return (
-    <section
-      id="why-me"
-      className="scroll-mt-28"
-      aria-labelledby="why-me-heading"
-    >
+    <section id="why-me" className="scroll-mt-28" aria-labelledby="why-me-heading">
       <div className="section-balance">
         <div className="mb-10 text-center">
           <h2

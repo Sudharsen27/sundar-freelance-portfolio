@@ -106,7 +106,7 @@ export default function Services() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                 {item.description}
               </p>
-              <div className="mt-4 grid grid-cols-3 gap-1.5 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:gap-2 sm:p-3">
+              <div className="mt-4 grid grid-cols-1 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:grid-cols-3 sm:gap-2 sm:p-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Starting at
@@ -167,7 +167,7 @@ export default function Services() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
                 {item.description}
               </p>
-              <div className="mt-4 grid grid-cols-3 gap-1.5 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:gap-2 sm:p-3">
+              <div className="mt-4 grid grid-cols-1 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:grid-cols-3 sm:gap-2 sm:p-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Starting at

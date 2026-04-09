@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ export default function Navbar() {
     setShowHireModal(false);
   }
 
-  function scrollToSection(sectionId, path) {
+  function scrollToSection(sectionId: string, path: string) {
     const el = document.getElementById(sectionId);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -55,7 +55,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    function onKeyDown(e) {
+    function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         closeHireModal();
       }

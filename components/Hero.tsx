@@ -3,13 +3,20 @@
 import Image from "next/image";
 
 export default function Hero() {
-  const handleScroll = (event, sectionId) => {
+  const handleScroll = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
     event.preventDefault();
     const el = document.getElementById(sectionId);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
     }
   };
 
@@ -28,7 +35,7 @@ export default function Hero() {
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Sundar Lingam
           </h1>
-          <p className="inline-flex w-fit items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200 sm:text-sm">
+          <p className="inline-flex w-fit max-w-full flex-wrap items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200 sm:text-sm">
             Available for Freelance | React / Next.js Developer | 2-3 Day Delivery
           </p>
           <p className="text-lg font-medium text-slate-200 sm:text-xl">
@@ -40,7 +47,7 @@ export default function Hero() {
             clear updates, and a production mindset. Perfect if you&apos;re hiring on
             Fiverr or need a reliable dev for your next build.
           </p>
-          <div className="grid grid-cols-1 gap-2 text-sm text-slate-300 sm:grid-cols-3 sm:gap-3">
+          <div className="grid grid-cols-1 gap-2 text-sm text-slate-300 sm:grid-cols-2 md:grid-cols-3 sm:gap-3">
             <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
               <span className="text-emerald-300" aria-hidden>
                 ✓

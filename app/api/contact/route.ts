@@ -1,17 +1,27 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
-function isValidEmail(email) {
-  return typeof email === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+type ContactPayload = {
+  name?: string;
+  email?: string;
+  service?: string;
+  budget?: string;
+  timeline?: string;
+  message?: string;
+  website?: string;
+};
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function requiredEnv(name) {
+function requiredEnv(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`Missing env: ${name}`);
   return value;
 }
 
-export async function POST(request) {
+export async function POST(request: Request) {
   try {
     const {
       name = "",
@@ -21,7 +31,7 @@ export async function POST(request) {
       timeline = "",
       message = "",
       website = "", // honeypot (should be empty)
-    } = await request.json();
+    } = (await request.json()) as ContactPayload;
 
     if (website) {
       return NextResponse.json({ success: true }, { status: 200 });
@@ -115,11 +125,9 @@ export async function POST(request) {
     });
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch (err) {
-    return NextResponse.json(
-      { success: false, message: err?.message || "Failed to send message." },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "Failed to send message.";
+    return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }
-

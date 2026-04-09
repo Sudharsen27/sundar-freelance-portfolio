@@ -7,7 +7,23 @@ import { whatsappUrl } from "@/lib/whatsapp";
 const FIVERR_GIG_URL =
   process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
 
-function buildWhatsAppLink({ name, email, service, budget, timeline, message }) {
+type FormState = {
+  name: string;
+  email: string;
+  service: string;
+  budget: string;
+  timeline: string;
+  message: string;
+};
+
+function buildWhatsAppLink({
+  name,
+  email,
+  service,
+  budget,
+  timeline,
+  message,
+}: FormState) {
   const text =
     `Hi Sundar, I'm ${name}.\n\n` +
     `Email: ${email}\n` +
@@ -19,9 +35,11 @@ function buildWhatsAppLink({ name, email, service, budget, timeline, message }) 
 }
 
 export default function Contact() {
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
   const [error, setError] = useState("");
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
     service: "",
@@ -32,7 +50,7 @@ export default function Contact() {
 
   const whatsappHref = useMemo(() => buildWhatsAppLink(form), [form]);
 
-  async function onSubmit(e) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
     setStatus("sending");
@@ -52,7 +70,9 @@ export default function Contact() {
         }),
       });
 
-      const data = await res.json().catch(() => null);
+      const data = (await res.json().catch(() => null)) as
+        | { success?: boolean; message?: string }
+        | null;
       if (!res.ok || !data?.success) {
         throw new Error(data?.message || "Failed to send message.");
       }
@@ -66,9 +86,9 @@ export default function Contact() {
         timeline: "",
         message: "",
       });
-    } catch (err) {
+    } catch (err: unknown) {
       setStatus("error");
-      setError(err?.message || "Failed to send message.");
+      setError(err instanceof Error ? err.message : "Failed to send message.");
     }
   }
 
@@ -103,10 +123,7 @@ export default function Contact() {
             sundarlingam272000@gmail.com
           </a>
         </div>
-        <form
-          className="premium-card p-6 sm:p-8"
-          onSubmit={onSubmit}
-        >
+        <form className="premium-card p-6 sm:p-8" onSubmit={onSubmit}>
           <div className="space-y-5">
             <input
               type="text"
@@ -117,10 +134,7 @@ export default function Contact() {
               aria-hidden
             />
             <div>
-              <label
-                htmlFor="name"
-                className="mb-2 block text-sm font-medium text-slate-300"
-              >
+              <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-300">
                 Your name
               </label>
               <input
@@ -136,10 +150,7 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label
-                htmlFor="email"
-                className="mb-2 block text-sm font-medium text-slate-300"
-              >
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
                 Email
               </label>
               <input
@@ -169,9 +180,7 @@ export default function Contact() {
                 className="glow-focus w-full resize-y rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100 placeholder:text-slate-500"
                 placeholder="What do you need built? (e.g. landing page, admin dashboard, API). Any deadline or budget range helps me quote faster."
                 value={form.message}
-                onChange={(e) =>
-                  setForm((p) => ({ ...p, message: e.target.value }))
-                }
+                onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
               />
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
@@ -188,9 +197,7 @@ export default function Contact() {
                   required
                   className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
                   value={form.service}
-                  onChange={(e) =>
-                    setForm((p) => ({ ...p, service: e.target.value }))
-                  }
+                  onChange={(e) => setForm((p) => ({ ...p, service: e.target.value }))}
                 >
                   <option value="" disabled>
                     Select a service
