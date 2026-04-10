@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import VisitNotifier from "@/components/VisitNotifier";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -82,6 +83,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen antialiased`}>
         {children}
+        <VisitNotifier />
         <Analytics />
       </body>
     </html>
