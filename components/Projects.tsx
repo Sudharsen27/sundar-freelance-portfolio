@@ -140,8 +140,9 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cta-primary mt-2 flex w-full items-center justify-center rounded-xl py-3 text-sm font-semibold"
+                  aria-label={`View live site: ${project.title}`}
                 >
-                  View Project
+                  View live site
                 </a>
               </div>
             </article>

@@ -100,8 +100,11 @@ export default function Contact() {
             Let&apos;s build your next project
           </h2>
           <p className="mt-3 text-base text-slate-400 sm:text-lg">
-            Tell me what you need—scope, timeline, and budget. I usually reply within{" "}
-            <span className="font-medium text-slate-300">24 hours</span>.
+            Tell me what you need—scope, timeline, and budget.{" "}
+            <span className="font-medium text-slate-300">
+              I aim to reply within a few hours on WhatsApp
+            </span>{" "}
+            and the same day by email when possible.
           </p>
         </div>
         <div className="mb-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">

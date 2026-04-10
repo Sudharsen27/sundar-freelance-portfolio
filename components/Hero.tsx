@@ -26,26 +26,23 @@ export default function Hero() {
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-300">
-              Open for freelance &amp; contract work
+              Open for freelance &amp; Fiverr projects
             </span>
           </div>
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-400/90">
-            Full-stack developer · React · Next.js · Node.js
+            React · Next.js · Node.js · APIs &amp; dashboards
           </p>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Sundar Lingam
           </h1>
-          <p className="inline-flex w-fit max-w-full flex-wrap items-center rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200 sm:text-sm">
-            Available for Freelance | React / Next.js Developer | 2-3 Day Delivery
-          </p>
-          <p className="text-lg font-medium text-slate-200 sm:text-xl">
-            I ship fast, scalable web apps that look sharp and convert—so you can grow
-            your business with confidence.
+          <p className="max-w-xl text-xl font-semibold leading-snug text-white sm:text-2xl">
+            I build and ship production-ready websites and web apps—so you get a clear
+            scope, fast delivery, and code you can grow on.
           </p>
           <p className="max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
-            Landing pages, dashboards, APIs, and full products—delivered with clean code,
-            clear updates, and a production mindset. Perfect if you&apos;re hiring on
-            Fiverr or need a reliable dev for your next build.
+            Landing pages, dashboards, REST APIs, and full-stack products. Ideal if you
+            need a reliable developer on Fiverr or for contract work—with updates you can
+            actually follow.
           </p>
           <div className="grid grid-cols-1 gap-2 text-sm text-slate-300 sm:grid-cols-2 md:grid-cols-3 sm:gap-3">
             <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
@@ -100,13 +97,12 @@ export default function Hero() {
           <div className="section-shell overflow-hidden rounded-xl p-2 transition hover:scale-[1.02] hover:shadow-glass">
             <div className="relative aspect-[5/4] overflow-hidden rounded-lg bg-slate-900/60 sm:aspect-[4/3]">
               <Image
-                src="/b52a518b-1db6-482f-9dc4-135d10be264c.png"
-                alt="Hero showcase image"
+                src="/hero-developer.svg"
+                alt="Illustration representing full-stack web development"
                 fill
-                className="object-cover object-center scale-[1.04] sm:scale-[1.08] lg:scale-[1.12]"
+                className="object-contain object-center p-4 sm:p-6"
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                unoptimized
               />
             </div>
           </div>
