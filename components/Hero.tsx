@@ -504,30 +504,35 @@ export default function Hero() {
         <div className="space-y-7">
 
           <span className="inline-flex items-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-300">
-            Available for Freelance & Fiverr
+            Available for freelance and contract work
           </span>
 
           <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl leading-tight">
             I help businesses turn ideas into
-            <span className="text-cyan-400"> fast, scalable web apps 🚀</span>
+            <span className="text-cyan-400"> fast, scalable digital products.</span>
           </h1>
 
           <p className="text-cyan-300 font-medium">
-            Trusted for fast delivery & production-ready code
+            From idea to launch: fast execution, scalable architecture, and
+            production-grade quality.
           </p>
 
-          <p className="max-w-xl text-base sm:text-lg text-slate-400">
-            Full-stack developer specializing in React, Next.js, APIs & dashboards.
-            Clean architecture. Smooth UI. Built for real-world usage.
+          <p className="max-w-xl text-base text-slate-300 sm:text-lg">
+            Full-stack developer specializing in React, Next.js, APIs, dashboards, and
+            automation systems. Clean architecture, smooth UI, and production-ready delivery.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-            {["8+ Projects", "Fast Delivery", "Scalable Code"].map((item, i) => (
+          <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+            {[
+              "2+ years experience",
+              "Snowflake Certified",
+              "Built real production systems",
+            ].map((item, i) => (
               <div
                 key={i}
                 className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 backdrop-blur"
               >
-                ✓ {item}
+                ✔ {item}
               </div>
             ))}
           </div>
@@ -579,7 +584,7 @@ export default function Hero() {
             </div>
 
             <h3 className="text-white font-semibold text-lg">
-              Live Product Metrics
+              Why clients choose me
             </h3>
 
             {/* REAL METRICS */}
@@ -587,31 +592,31 @@ export default function Hero() {
 
               <div>
                 <div className="flex justify-between mb-1">
-                  <span>Performance</span>
-                  <span>85%</span>
-                </div>
-                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full w-[85%] bg-cyan-400"></div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span>Scalability</span>
-                  <span>65%</span>
-                </div>
-                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full w-[65%] bg-blue-400"></div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span>UI Quality</span>
+                  <span>Delivery reliability</span>
                   <span>95%</span>
                 </div>
                 <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full w-[95%] bg-emerald-400"></div>
+                  <div className="h-full w-[95%] bg-cyan-400"></div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Code quality focus</span>
+                  <span>92%</span>
+                </div>
+                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full w-[92%] bg-blue-400"></div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Business impact mindset</span>
+                  <span>90%</span>
+                </div>
+                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full w-[90%] bg-emerald-400"></div>
                 </div>
               </div>
 
@@ -619,7 +624,7 @@ export default function Hero() {
 
             {/* TECH */}
             <div className="flex flex-wrap gap-2">
-              {["React", "Next.js", "API", "Tailwind"].map((tech, i) => (
+              {["React", "Node.js", "Dashboards", "Automation"].map((tech, i) => (
                 <span
                   key={i}
                   className="text-xs px-3 py-1 rounded-full bg-white/10 text-cyan-300"
@@ -632,10 +637,10 @@ export default function Hero() {
             {/* CODE */}
             <div className="relative rounded-lg bg-black/80 p-3 text-xs text-green-400 font-mono">
               <div className="absolute inset-0 bg-cyan-500/10 blur-xl"></div>
-{`const app = {
-  performance: "fast",
-  scalable: true,
-  ui: "premium"
+{`const projectOutcome = {
+  launch: "faster",
+  quality: "production-ready",
+  communication: "clear"
 };`}
             </div>
 

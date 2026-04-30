@@ -43,8 +43,8 @@ export default function ValueProps() {
                 {"\u2713"}
               </span>
               <div>
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.body}</p>
+                <h3 className="card-title">{item.title}</h3>
+                <p className="card-body mt-2">{item.body}</p>
               </div>
             </div>
           ))}

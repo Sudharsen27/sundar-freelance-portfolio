@@ -37,6 +37,22 @@ body {
   @apply mx-auto mt-3 max-w-2xl text-base text-slate-400 sm:text-lg;
 }
 
+.card-title {
+  @apply text-lg font-semibold leading-tight text-white sm:text-xl;
+}
+
+.card-body {
+  @apply text-sm leading-relaxed text-slate-400 sm:text-[15px];
+}
+
+.card-meta {
+  @apply text-xs font-medium tracking-wide text-slate-300;
+}
+
+.card-tag {
+  @apply rounded-md border border-white/10 bg-slate-900/80 px-2 py-0.5 text-[11px] font-medium text-slate-300;
+}
+
 .premium-card {
   @apply rounded-2xl border border-white/10 bg-slate-950/60 backdrop-blur-sm shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_20px_55px_-24px_rgba(15,23,42,0.95)] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/25 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.18),0_26px_60px_-24px_rgba(37,99,235,0.45)];
 }

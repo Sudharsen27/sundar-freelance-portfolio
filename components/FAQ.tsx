@@ -43,7 +43,7 @@ export default function FAQ() {
               <summary className="cursor-pointer list-none pr-8 text-sm font-semibold text-white sm:text-base">
                 {item.q}
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">{item.a}</p>
+              <p className="card-body mt-3">{item.a}</p>
             </details>
           ))}
         </div>

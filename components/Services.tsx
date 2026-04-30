@@ -94,19 +94,15 @@ export default function Services() {
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-[11px] font-bold uppercase tracking-wide text-cyan-200">
                   {item.badge}
                 </span>
-                <h3 className="text-lg font-bold text-white sm:text-xl">
-                  {item.title}
-                </h3>
+                <h3 className="card-title">{item.title}</h3>
               </div>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
-                {item.description}
-              </p>
+              <p className="card-body mt-3 flex-1">{item.description}</p>
               <div className="mt-4 grid grid-cols-1 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:grid-cols-3 sm:gap-2 sm:p-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Starting at
                   </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                  <p className="card-meta mt-1 text-slate-200">
                     {item.startingAt}
                   </p>
                 </div>
@@ -114,7 +110,7 @@ export default function Services() {
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Delivery
                   </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                  <p className="card-meta mt-1 text-slate-200">
                     {item.delivery}
                   </p>
                 </div>
@@ -122,7 +118,7 @@ export default function Services() {
                   <p className="text-[10px] uppercase tracking-wide text-slate-500">
                     Revisions
                   </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-200">
+                  <p className="card-meta mt-1 text-slate-200">
                     {item.revisions}
                   </p>
                 </div>
@@ -130,10 +126,7 @@ export default function Services() {
               <div className="mt-5 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
                 <div className="flex flex-wrap gap-2">
                   {item.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md border border-white/10 bg-slate-900/70 px-2.5 py-1 text-[11px] font-medium text-slate-300"
-                    >
+                    <span key={tech} className="card-tag px-2.5 py-1">
                       {tech}
                     </span>
                   ))}

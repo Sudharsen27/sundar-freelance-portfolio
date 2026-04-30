@@ -41,10 +41,10 @@ export default function Testimonials() {
               key={item.name}
               className="premium-card flex h-full flex-col p-6"
             >
-              <p className="text-sm leading-relaxed text-slate-300">"{item.quote}"</p>
+              <p className="card-body text-slate-300">"{item.quote}"</p>
               <div className="mt-5 border-t border-white/10 pt-4">
-                <p className="text-sm font-semibold text-white">{item.name}</p>
-                <p className="text-xs text-slate-400">{item.role}</p>
+                <p className="card-meta text-white">{item.name}</p>
+                <p className="text-xs text-slate-400 sm:text-sm">{item.role}</p>
                 <p className="mt-2 inline-flex rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-200">
                   {item.outcome}
                 </p>
