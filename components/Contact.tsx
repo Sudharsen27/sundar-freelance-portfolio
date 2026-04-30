@@ -94,18 +94,16 @@ export default function Contact() {
 
   return (
     <section id="contact" className="scroll-mt-28">
-      <div className="section-balance mx-auto max-w-lg">
+      <div className="section-balance mx-auto max-w-3xl">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Let&apos;s build your next project
-          </h2>
-          <p className="mt-3 text-base text-slate-400 sm:text-lg">
-            Tell me what you need—scope, timeline, and budget.{" "}
-            <span className="font-medium text-slate-300">
-              I aim to reply within a few hours on WhatsApp
-            </span>{" "}
-            and the same day by email when possible.
+          <h2 className="section-heading">Let&apos;s Build Something Together 🚀</h2>
+          <p className="section-subheading">
+            Available for freelance and full-time opportunities. Share your goals, and
+            I&apos;ll send a practical plan with timeline and next steps.
           </p>
+        </div>
+        <div className="mb-6 rounded-xl border border-cyan-400/25 bg-cyan-500/10 px-4 py-3 text-center text-sm text-cyan-100">
+          Most leads receive a response within 24 hours.
         </div>
         <div className="mb-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <a
@@ -287,7 +285,7 @@ export default function Contact() {
                 disabled={status === "sending"}
                 className="cta-primary w-full rounded-xl py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === "sending" ? "Sending..." : "Send message"}
+                {status === "sending" ? "Sending..." : "Hire Me Now"}
               </button>
 
               <a
@@ -313,7 +311,7 @@ export default function Contact() {
             ) : null}
 
             <p className="text-center text-xs text-slate-500">
-              No spam—your message goes only to me. For urgent work, mention it in the
+              No spam - your message goes only to me. For urgent work, mention it in the
               text.
             </p>
           </div>

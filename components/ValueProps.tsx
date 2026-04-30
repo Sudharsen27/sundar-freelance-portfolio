@@ -1,19 +1,19 @@
 const points = [
   {
-    title: "Clear communication",
-    body: "Regular updates, plain-English explanations, and quick replies—so you always know where your project stands.",
+    title: "I solve business problems, not just code",
+    body: "Every feature is mapped to outcomes like faster operations, better conversions, or clearer insights.",
   },
   {
-    title: "Reliable delivery",
-    body: "Milestones, realistic timelines, and code you can deploy—built for real users, not just demos.",
+    title: "Clean and scalable code",
+    body: "Your project is structured for long-term growth, easier maintenance, and smooth handoffs.",
   },
   {
-    title: "Modern, maintainable stack",
-    body: "React, Next.js, Node.js, and PostgreSQL—clean structure so your product is easy to extend later.",
+    title: "Strong frontend + backend skills",
+    body: "From polished UI to robust APIs and data flows, you get complete product execution in one place.",
   },
   {
-    title: "Aligned with your goals",
-    body: "SEO-friendly pages, responsive UI, APIs, auth, and hosting—I match the tech to your budget and timeline.",
+    title: "Fast delivery with good communication",
+    body: "Clear milestones, regular updates, and dependable timelines so your project keeps moving.",
   },
 ];
 
@@ -22,16 +22,12 @@ export default function ValueProps() {
     <section id="why-me" className="scroll-mt-28" aria-labelledby="why-me-heading">
       <div className="section-balance">
         <div className="mb-10 text-center">
-          <h2
-            id="why-me-heading"
-            className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
-          >
-            Why hire me for your project
+          <h2 id="why-me-heading" className="section-heading">
+            Why Hire Me
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-400 sm:text-lg">
-            Whether you need a landing page, a dashboard, or a full product—here is what
-            you get when we work together (including orders through{" "}
-            <span className="text-slate-300">Fiverr</span> or direct hire).
+          <p className="section-subheading">
+            High-converting products come from clear execution, strong engineering, and
+            focused collaboration.
           </p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">

@@ -8,12 +8,12 @@ const FIVERR_GIG_URL =
   process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
 
 const links = [
-  { id: "home", label: "Home", path: "/home" },
-  { id: "about", label: "About", path: "/about" },
-  { id: "why-me", label: "Why me", path: "/why-me" },
-  { id: "services", label: "Services", path: "/services" },
-  { id: "projects", label: "Projects", path: "/projects" },
-  { id: "contact", label: "Contact", path: "/contact" },
+  { id: "home", label: "Home", path: "/" },
+  { id: "about", label: "About", path: "/" },
+  { id: "why-me", label: "Why me", path: "/" },
+  { id: "services", label: "Services", path: "/" },
+  { id: "projects", label: "Projects", path: "/" },
+  { id: "contact", label: "Contact", path: "/" },
 ];
 
 export default function Navbar() {
@@ -74,11 +74,11 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between">
           <a
-            href="/home"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               closeMenu();
-              scrollToSection("home", "/home");
+              scrollToSection("home", "/");
             }}
             className="inline-flex shrink-0 items-center gap-2.5 rounded-xl border border-white/10 bg-slate-900/60 px-2.5 py-1.5 text-lg font-semibold tracking-tight text-white shadow-[0_8px_24px_-14px_rgba(59,130,246,0.6)] ring-1 ring-cyan-400/10 transition hover:border-cyan-300/25 hover:bg-slate-900/80"
           >
@@ -163,7 +163,7 @@ export default function Navbar() {
                 }}
                 className="cta-primary inline-flex w-full justify-center rounded-lg px-4 py-2 text-sm font-semibold sm:w-auto sm:py-1.5"
               >
-                Hire me
+                Hire Me Now
               </button>
             </li>
           </ul>

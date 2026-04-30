@@ -26,13 +26,10 @@ export default function FAQ() {
     <section id="faq" className="scroll-mt-28" aria-labelledby="faq-heading">
       <div className="section-balance">
         <div className="mb-10 text-center">
-          <h2
-            id="faq-heading"
-            className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
-          >
+          <h2 id="faq-heading" className="section-heading">
             Frequently asked questions
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-400 sm:text-lg">
+          <p className="section-subheading">
             Quick answers before we start your project.
           </p>
         </div>
@@ -41,7 +38,7 @@ export default function FAQ() {
           {faqs.map((item) => (
             <details
               key={item.q}
-              className="group rounded-2xl border border-white/[0.08] bg-slate-950/50 p-5 backdrop-blur-sm transition hover:border-blue-500/20"
+              className="premium-card group p-5"
             >
               <summary className="cursor-pointer list-none pr-8 text-sm font-semibold text-white sm:text-base">
                 {item.q}

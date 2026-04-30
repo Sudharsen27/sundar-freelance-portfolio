@@ -62,9 +62,6 @@ const services = [
 ];
 
 export default function Services() {
-  const top = services.slice(0, 3);
-  const bottom = services.slice(3, 5);
-
   return (
     <section id="services" className="relative scroll-mt-28">
       <div
@@ -76,19 +73,17 @@ export default function Services() {
         <div className="absolute bottom-[0%] left-1/3 h-[min(300px,40vw)] w-[min(300px,40vw)] rounded-full bg-indigo-500/15 blur-[80px]" />
       </div>
 
-      <div className="section-balance space-y-10 py-4">
+      <div className="section-balance space-y-10">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            My Services
-          </h2>
-          <p className="mt-3 text-base text-slate-400 sm:text-lg">
+          <h2 className="section-heading">My Services</h2>
+          <p className="section-subheading">
             Professional service packages tailored for modern web products and
             freelance business outcomes.
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {top.map((item) => (
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((item) => (
             <article key={item.id} className="premium-card group flex flex-col p-5 sm:p-7">
               <div className="mb-4">
                 <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
@@ -97,67 +92,6 @@ export default function Services() {
               </div>
               <div className="flex items-start gap-3">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-[11px] font-bold uppercase tracking-wide text-cyan-200">
-                  {item.badge}
-                </span>
-                <h3 className="text-lg font-bold text-white sm:text-xl">
-                  {item.title}
-                </h3>
-              </div>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
-                {item.description}
-              </p>
-              <div className="mt-4 grid grid-cols-1 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:grid-cols-3 sm:gap-2 sm:p-3">
-                <div>
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
-                    Starting at
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-200">
-                    {item.startingAt}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
-                    Delivery
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-200">
-                    {item.delivery}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
-                    Revisions
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-200">
-                    {item.revisions}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
-                <div className="flex flex-wrap gap-2">
-                  {item.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md border border-white/10 bg-slate-900/70 px-2.5 py-1 text-[11px] font-medium text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
-          {bottom.map((item) => (
-            <article key={item.id} className="premium-card group flex flex-col p-5 sm:p-7">
-              <div className="mb-4">
-                <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-200">
-                  {item.highlight}
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/10 text-[11px] font-bold uppercase tracking-wide text-blue-200">
                   {item.badge}
                 </span>
                 <h3 className="text-lg font-bold text-white sm:text-xl">

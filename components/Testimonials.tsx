@@ -27,13 +27,10 @@ export default function Testimonials() {
     <section id="testimonials" className="scroll-mt-28" aria-labelledby="testimonials-heading">
       <div className="section-balance">
         <div className="mb-10 text-center">
-          <h2
-            id="testimonials-heading"
-            className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
-          >
+          <h2 id="testimonials-heading" className="section-heading">
             Client feedback
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-400 sm:text-lg">
+          <p className="section-subheading">
             Built for reliability, speed, and quality. Here is what clients appreciated most.
           </p>
         </div>
@@ -42,7 +39,7 @@ export default function Testimonials() {
           {testimonials.map((item) => (
             <article
               key={item.name}
-              className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-slate-950/50 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition hover:border-blue-500/25"
+              className="premium-card flex h-full flex-col p-6"
             >
               <p className="text-sm leading-relaxed text-slate-300">"{item.quote}"</p>
               <div className="mt-5 border-t border-white/10 pt-4">

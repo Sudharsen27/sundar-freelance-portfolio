@@ -459,6 +459,23 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative overflow-hidden scroll-mt-28">
+      {/* Edge curve accent - cleaner fit for hero layout */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-28 opacity-80 lg:block">
+        <svg viewBox="0 0 120 900" preserveAspectRatio="none" className="h-full w-full" aria-hidden>
+          <path
+            d="M118 0 C18 180 18 360 118 450 C18 540 18 720 118 900"
+            fill="none"
+            className="stroke-cyan-300/45"
+            strokeWidth="2"
+          />
+          <path
+            d="M118 60 C34 210 34 340 118 450 C34 560 34 690 118 840"
+            fill="none"
+            className="stroke-cyan-500/20"
+            strokeWidth="1.5"
+          />
+        </svg>
+      </div>
 
       {/* 🔥 PREMIUM BACKGROUND */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -481,7 +498,7 @@ export default function Hero() {
       </div>
 
       {/* CONTENT */}
-      <div className="section-balance grid items-center gap-10 lg:grid-cols-2 lg:gap-16 relative">
+      <div className="section-balance relative z-10 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
         {/* LEFT SIDE */}
         <div className="space-y-7">

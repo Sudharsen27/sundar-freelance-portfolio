@@ -11,7 +11,7 @@ export default function About() {
   return (
     <section id="about" className="scroll-mt-28">
       <div className="section-balance">
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-slate-950/60 shadow-[0_0_80px_-30px_rgba(59,130,246,0.35)] backdrop-blur-md">
+        <div className="premium-card relative overflow-hidden">
           <div
             className="h-[3px] w-full bg-gradient-to-r from-transparent via-blue-500/80 to-transparent"
             aria-hidden

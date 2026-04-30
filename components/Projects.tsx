@@ -87,10 +87,8 @@ export default function Projects() {
     <section id="projects" className="scroll-mt-28">
       <div className="section-balance space-y-10 sm:space-y-12">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            My Projects
-          </h2>
-          <p className="mt-3 text-base text-slate-400 sm:text-lg">
+          <h2 className="section-heading">My Projects</h2>
+          <p className="section-subheading">
             Real client work and live products—click through to see quality, speed, and
             attention to detail.
           </p>
