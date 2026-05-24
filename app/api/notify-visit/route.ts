@@ -1,6 +1,8 @@
-import nodemailer from "nodemailer";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { createSmtpTransporter } from "@/lib/smtp";
+
+export const runtime = "nodejs";
 
 type VisitBody = {
   referrer?: string;
@@ -147,11 +149,13 @@ export async function POST(request: Request) {
   const to = requiredEnv("CONTACT_TO_EMAIL");
   const from = process.env.CONTACT_FROM_EMAIL || user;
 
-  const transporter = nodemailer.createTransport({
+  const transporter = createSmtpTransporter({
     host,
     port,
-    secure: port === 465,
-    auth: { user, pass },
+    user,
+    pass,
+    to,
+    from,
   });
 
   const visitorShort = shortVisitorLabel(visitorId);

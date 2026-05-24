@@ -1,5 +1,8 @@
-import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { createSmtpTransporter, getSmtpConfig } from "@/lib/smtp";
+
+export const runtime = "nodejs";
+export const maxDuration = 30;
 
 type ContactPayload = {
   name?: string;
@@ -15,11 +18,8 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function requiredEnv(name: string): string {
-  const value = process.env[name];
-  if (!value) throw new Error(`Missing env: ${name}`);
-  return value;
-}
+const SMTP_NOT_CONFIGURED_MESSAGE =
+  "Email is not configured yet. Please use WhatsApp or email sundarlingam272000@gmail.com directly.";
 
 export async function POST(request: Request) {
   try {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       budget = "",
       timeline = "",
       message = "",
-      website = "", // honeypot (should be empty)
+      website = "",
     } = (await request.json()) as ContactPayload;
 
     if (website) {
@@ -51,23 +51,20 @@ export async function POST(request: Request) {
       );
     }
 
-    const host = requiredEnv("SMTP_HOST");
-    const port = Number(requiredEnv("SMTP_PORT"));
-    const user = requiredEnv("SMTP_USER");
-    const pass = requiredEnv("SMTP_PASS");
-    const to = requiredEnv("CONTACT_TO_EMAIL");
-    const from = process.env.CONTACT_FROM_EMAIL || user;
+    const smtp = getSmtpConfig();
+    if (!smtp) {
+      console.error("[contact] SMTP environment variables are not configured.");
+      return NextResponse.json(
+        { success: false, message: SMTP_NOT_CONFIGURED_MESSAGE },
+        { status: 503 }
+      );
+    }
 
-    const transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: { user, pass },
-    });
+    const transporter = createSmtpTransporter(smtp);
 
     await transporter.sendMail({
-      from: `Sundar Portfolio <${from}>`,
-      to,
+      from: `Sundar Portfolio <${smtp.from}>`,
+      to: smtp.to,
       replyTo: email,
       subject: `New Portfolio Lead: ${name}`,
       text:
@@ -93,15 +90,14 @@ export async function POST(request: Request) {
       `,
     });
 
-    // Auto-reply to the client (acknowledgement)
     await transporter.sendMail({
-      from: `Sundar Lingam <${from}>`,
+      from: `Sundar Lingam <${smtp.from}>`,
       to: email,
-      subject: "Thanks — I received your message",
+      subject: "Thank you — your inquiry has been received",
       text:
         `Hi ${name},\n\n` +
-        `Thanks for reaching out. I’ve received your message and I’ll reply within 24 hours.\n\n` +
-        `Here’s what I captured:\n` +
+        `Thank you for reaching out. Your message has been received, and I will respond with a detailed reply within 24 hours.\n\n` +
+        `Inquiry summary:\n` +
         `- Service needed: ${service}\n` +
         `- Budget range: ${budget}\n` +
         `- Timeline: ${timeline}\n\n` +
@@ -110,11 +106,11 @@ export async function POST(request: Request) {
         <div style="font-family:Arial,sans-serif;line-height:1.6">
           <p style="margin:0 0 12px">Hi ${String(name)},</p>
           <p style="margin:0 0 12px">
-            Thanks for reaching out. I’ve received your message and I’ll reply within
-            <b>24 hours</b>.
+            Thank you for reaching out. Your message has been received, and I will respond with a
+            detailed reply within <b>24 hours</b>.
           </p>
           <p style="margin:0 0 12px">
-            Here’s what I captured:
+            Inquiry summary:
             <br />- <b>Service needed:</b> ${String(service)}
             <br />- <b>Budget range:</b> ${String(budget)}
             <br />- <b>Timeline:</b> ${String(timeline)}
@@ -126,8 +122,11 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err: unknown) {
+    console.error("[contact] Failed to send email:", err);
     const message =
-      err instanceof Error ? err.message : "Failed to send message.";
+      err instanceof Error && err.message.includes("Missing env")
+        ? SMTP_NOT_CONFIGURED_MESSAGE
+        : "Could not send email right now. Please try WhatsApp or email directly.";
     return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }

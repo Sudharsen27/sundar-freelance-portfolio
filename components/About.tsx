@@ -1,114 +1,110 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { scrollToSection } from "@/lib/scroll";
 
 const highlights = [
-  "Production-ready React & Next.js frontends",
-  "REST APIs, auth (JWT), and PostgreSQL",
-  "Responsive, accessible UI with performance in mind",
-  "Clear handoffs and documentation when you need them",
+  "Modern, conversion-focused website design",
+  "Full-stack development with clean architecture",
+  "Responsive experiences across all devices",
+  "Clear communication and reliable delivery",
+];
+
+const stats = [
+  { label: "Response time", value: "24 hrs", desc: "Quick replies & clear next steps" },
+  { label: "Projects shipped", value: "8+", desc: "Live products for real clients" },
+  { label: "Client focus", value: "100%", desc: "Business outcomes over just code" },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-28">
-      <div className="section-balance">
-        <div className="premium-card relative overflow-hidden">
-          <div
-            className="h-[3px] w-full bg-gradient-to-r from-transparent via-blue-500/80 to-transparent"
-            aria-hidden
+    <section id="about" className="scroll-mt-28 py-20 sm:py-28">
+      <div className="section-container">
+        <SectionReveal>
+          <SectionHeader
+            badge="About Me"
+            title="Your Partner in Digital Growth"
+            subtitle="I'm a digital creator and full-stack developer who helps brands, startups, and creators launch premium web experiences that build trust and drive results."
+            align="left"
           />
-          <div className="grid gap-10 p-8 sm:p-10 lg:grid-cols-2 lg:items-center lg:gap-14 lg:p-12">
-            <div className="space-y-6 lg:max-w-xl">
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                About Me
-              </h2>
-              <p className="text-base leading-relaxed text-slate-400 sm:text-lg">
-                I&apos;m a software engineer focused on full-stack delivery: React and
-                Next.js on the frontend, Node.js and solid APIs on the backend, with
-                PostgreSQL when your data matters. I&apos;ve shipped real apps for real
-                users—schools, labs, shops, dashboards, and more.
+        </SectionReveal>
+
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <SectionReveal delay={0.1}>
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20 blur-2xl" />
+              <div className="premium-card relative overflow-hidden p-2">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                  <Image
+                    src="/about.png"
+                    alt="Sundar Lingam workspace"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+              </div>
+            </div>
+          </SectionReveal>
+
+          <SectionReveal delay={0.2}>
+            <div className="space-y-6">
+              <p className="text-lg leading-relaxed text-text-secondary">
+                I combine design sensibility with technical execution to deliver
+                websites that look premium and perform flawlessly. From landing
+                pages to full business websites, every project is built with your
+                audience and growth goals in mind.
               </p>
-              <p className="text-base leading-relaxed text-slate-400 sm:text-lg">
-                If you&apos;re hiring for a freelance project or long-term collaboration,
-                you get someone who communicates clearly, respects deadlines, and cares
-                about code quality—not just &quot;making it work.&quot;
+              <p className="text-lg leading-relaxed text-text-secondary">
+                When you work with me, you get a freelancer who treats your brand
+                like their own — transparent updates, on-time delivery, and code
+                you can scale with confidence.
               </p>
-              <ul className="space-y-2.5 border-t border-white/10 pt-6">
+
+              <StaggerContainer className="space-y-3 pt-2">
                 {highlights.map((line) => (
-                  <li
-                    key={line}
-                    className="flex items-start gap-2.5 text-sm text-slate-300 sm:text-base"
-                  >
-                    <span
-                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400"
-                      aria-hidden
-                    />
-                    {line}
-                  </li>
+                  <StaggerItem key={line}>
+                    <div className="flex items-start gap-3 text-text-secondary">
+                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-purple/20 text-xs text-accent-purple">
+                        ✓
+                      </span>
+                      {line}
+                    </div>
+                  </StaggerItem>
                 ))}
-              </ul>
+              </StaggerContainer>
+
+              <motion.a
+                href="/"
+                onClick={(e) => scrollToSection(e, "contact")}
+                className="btn-primary mt-4 inline-flex"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Start a Project
+              </motion.a>
             </div>
-            <div className="relative mx-auto w-full max-w-md space-y-4 lg:mx-0 lg:max-w-none">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] bg-slate-900/50 shadow-inner ring-1 ring-blue-500/10">
-                <Image
-                  src="/about.png"
-                  alt="About me showcase image"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  unoptimized
-                />
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/10 p-4">
-                  <p className="text-xs uppercase tracking-wide text-cyan-200/90">
-                    Response time
-                  </p>
-                  <p className="mt-1 text-2xl font-bold text-white">Within 24 hours</p>
-                  <p className="mt-1 text-sm text-slate-300">
-                    Quick updates and clear next steps.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 p-4">
-                  <p className="text-xs uppercase tracking-wide text-blue-200/90">
-                    Delivery focus
-                  </p>
-                  <p className="mt-1 text-2xl font-bold text-white">On-time shipping</p>
-                  <p className="mt-1 text-sm text-slate-300">
-                    Scope clarity, milestones, and quality checks.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-violet-500/20 bg-violet-500/10 p-4 sm:col-span-2">
-                  <p className="text-xs uppercase tracking-wide text-violet-200/90">
-                    Build quality
-                  </p>
-                  <p className="mt-1 text-xl font-bold text-white">
-                    Clean code + production-ready architecture
-                  </p>
-                  <p className="mt-1 text-sm text-slate-300">
-                    Scalable structure, responsive UI, and maintainable components from
-                    day one.
-                  </p>
-                </div>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-slate-900/60 p-4">
-                <p className="text-xs uppercase tracking-wide text-slate-400">
-                  What clients get
-                </p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200">
-                    Weekly progress updates
-                  </span>
-                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200">
-                    Source code handover
-                  </span>
-                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200">
-                    Post-launch support
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          </SectionReveal>
         </div>
+
+        <StaggerContainer className="mt-16 grid gap-5 sm:grid-cols-3">
+          {stats.map((stat) => (
+            <StaggerItem key={stat.label}>
+              <div className="premium-card p-6 text-center">
+                <p className="text-xs font-semibold uppercase tracking-wider text-accent-cyan">
+                  {stat.label}
+                </p>
+                <p className="mt-2 font-display text-3xl font-bold text-text-primary">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-sm text-text-secondary">{stat.desc}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

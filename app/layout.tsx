@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import VisitNotifier from "@/components/VisitNotifier";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-poppins",
+});
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -18,22 +31,21 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   title: {
-    default: "Sundar Lingam | Full-Stack Web Developer",
+    default: "Sundar Lingam | Digital Creator & Freelance Developer",
     template: "%s | Sundar Lingam",
   },
   description:
-    "Hire a full-stack developer for React, Next.js, and Node.js. Fast delivery, clear communication, live projects. Available for Fiverr and contract work.",
+    "Premium digital freelancer helping brands, startups, and creators build modern websites, landing pages, and digital experiences that drive business growth.",
   keywords: [
     "freelance developer",
-    "Next.js developer",
-    "React developer",
-    "Fiverr developer",
-    "full stack",
-    "web development",
+    "digital creator",
+    "website development",
+    "landing pages",
+    "UI/UX design",
+    "portfolio websites",
+    "business websites",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   category: "technology",
   authors: [{ name: "Sundar Lingam" }],
   creator: "Sundar Lingam",
@@ -50,27 +62,27 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Sundar Lingam | Full-Stack Developer (React, Next.js, Node.js)",
+    title: "Sundar Lingam | Digital Creator & Freelance Developer",
     description:
-      "Production-ready web apps, APIs, and dashboards. Open for freelance and contract projects.",
+      "Helping brands build their digital presence with modern websites and premium digital experiences.",
     type: "website",
     url: "/",
-    siteName: "Sundar Lingam Portfolio",
+    siteName: "Sundar Lingam",
     images: [
       {
-        url: "/hero-developer.svg",
-        width: 1200,
-        height: 1200,
-        alt: "Sundar Lingam developer portfolio",
+        url: "/sundar-hero.png",
+        width: 800,
+        height: 800,
+        alt: "Sundar Lingam - Digital Creator & Freelancer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sundar Lingam | Full-Stack Developer",
+    title: "Sundar Lingam | Digital Creator & Freelancer",
     description:
-      "React, Next.js, Node.js developer for freelance and contract projects.",
-    images: ["/hero-developer.svg"],
+      "Modern websites, digital experiences, and business growth for brands and startups.",
+    images: ["/sundar-hero.png"],
   },
 };
 
@@ -80,8 +92,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} min-h-screen antialiased`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+      <body className="min-h-screen bg-bg font-sans antialiased">
         {children}
         <VisitNotifier />
         <Analytics />

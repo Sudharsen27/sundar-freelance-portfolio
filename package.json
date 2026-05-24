@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "latest",
+    "framer-motion": "^12.40.0",
     "next": "latest",
     "nodemailer": "latest",
     "react": "latest",

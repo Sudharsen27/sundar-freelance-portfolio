@@ -1,140 +1,136 @@
+"use client";
+
+import { motion } from "framer-motion";
+import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { scrollToSection } from "@/lib/scroll";
+
 const services = [
   {
-    id: "fullstack",
-    badge: "FS",
-    title: "Full-Stack Web Development",
+    id: "web-dev",
+    icon: "🌐",
+    title: "Website Development",
     description:
-      "End-to-end product development from frontend to backend with clean architecture and production-ready delivery.",
-    stack: ["React", "Next.js", "Node.js", "PostgreSQL"],
-    highlight: "Best for: MVP to scale",
-    startingAt: "USD 250 (INR 20.7k approx.)",
-    delivery: "5-7 days",
-    revisions: "2 revisions",
+      "Custom websites built from scratch with modern tech stacks, optimized performance, and scalable architecture for long-term growth.",
+    tags: ["React", "Next.js", "Node.js"],
   },
   {
-    id: "frontend",
-    badge: "UI",
-    title: "Modern Frontend Development",
+    id: "responsive",
+    icon: "📱",
+    title: "Responsive Websites",
     description:
-      "Pixel-perfect, responsive, and high-performance interfaces focused on conversion and user experience.",
-    stack: ["React", "Tailwind CSS", "TypeScript"],
-    highlight: "Best for: Landing pages & dashboards",
-    startingAt: "USD 120 (INR 10k approx.)",
-    delivery: "2-4 days",
-    revisions: "2 revisions",
+      "Pixel-perfect layouts that look stunning on every screen — mobile, tablet, and desktop — with smooth interactions throughout.",
+    tags: ["Mobile-first", "Tailwind CSS", "Accessibility"],
   },
   {
-    id: "api",
-    badge: "API",
-    title: "API Development & Integration",
+    id: "portfolio",
+    icon: "✨",
+    title: "Portfolio Websites",
     description:
-      "Secure and scalable APIs with reliable third-party integrations, auth flows, and robust data handling.",
-    stack: ["Node.js", "REST API", "JWT", "Webhooks"],
-    highlight: "Best for: SaaS integrations",
-    startingAt: "USD 180 (INR 15k approx.)",
-    delivery: "3-5 days",
-    revisions: "2 revisions",
+      "Stand-out personal and creative portfolios designed to showcase your work beautifully and attract the right opportunities.",
+    tags: ["Personal Brand", "Animations", "SEO"],
   },
   {
-    id: "bug",
-    badge: "FIX",
-    title: "Bug Fixing & Optimization",
+    id: "landing",
+    icon: "🚀",
+    title: "Landing Pages",
     description:
-      "Quick bug resolution, code refactoring, and measurable performance improvements for existing apps.",
-    stack: ["Debugging", "Refactoring", "Core Web Vitals"],
-    highlight: "Best for: Existing projects",
-    startingAt: "USD 80 (INR 6.6k approx.)",
-    delivery: "1-3 days",
-    revisions: "3 revisions",
+      "High-converting landing pages crafted to capture attention, communicate value fast, and turn visitors into leads or customers.",
+    tags: ["Conversion", "A/B Ready", "Fast Load"],
   },
   {
-    id: "cloud",
-    badge: "OPS",
-    title: "Deployment & Cloud Setup",
+    id: "uiux",
+    icon: "🎨",
+    title: "UI/UX Design",
     description:
-      "Smooth deployment pipelines and cloud setup with monitoring, SSL, and reliable production configuration.",
-    stack: ["AWS", "Vercel", "Cloudflare", "CI/CD"],
-    highlight: "Best for: Launch-ready delivery",
-    startingAt: "USD 150 (INR 12.5k approx.)",
-    delivery: "2-4 days",
-    revisions: "2 revisions",
+      "Clean, intuitive interfaces with thoughtful user flows — blending aesthetics with usability for memorable digital experiences.",
+    tags: ["Figma", "Wireframes", "Prototypes"],
+  },
+  {
+    id: "business",
+    icon: "💼",
+    title: "Business Websites",
+    description:
+      "Professional business websites that establish credibility, communicate your services clearly, and generate real inquiries.",
+    tags: ["Corporate", "CMS Ready", "Analytics"],
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="relative scroll-mt-28">
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-3xl"
-        aria-hidden
-      >
-        <div className="absolute -left-[10%] top-[5%] h-[min(420px,50vw)] w-[min(420px,50vw)] rounded-full bg-purple-600/25 blur-[100px]" />
-        <div className="absolute -right-[5%] top-1/3 h-[min(380px,45vw)] w-[min(380px,45vw)] rounded-full bg-blue-600/20 blur-[90px]" />
-        <div className="absolute bottom-[0%] left-1/3 h-[min(300px,40vw)] w-[min(300px,40vw)] rounded-full bg-indigo-500/15 blur-[80px]" />
+    <section id="services" className="relative scroll-mt-28 py-20 sm:py-28">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <motion.div
+          className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent-purple/10 blur-[120px]"
+          animate={{ x: [0, 40, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-accent-cyan/10 blur-[100px]"
+          animate={{ x: [0, -30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
-      <div className="section-balance space-y-10">
-        <div className="text-center">
-          <h2 className="section-heading">My Services</h2>
-          <p className="section-subheading">
-            Professional service packages tailored for modern web products and
-            freelance business outcomes.
-          </p>
-        </div>
+      <div className="section-container relative">
+        <SectionReveal>
+          <SectionHeader
+            badge="Services"
+            title="What I Can Build For You"
+            subtitle="Premium digital services tailored for brands, startups, and creators who want a professional online presence that converts."
+          />
+        </SectionReveal>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((item) => (
-            <article key={item.id} className="premium-card group flex flex-col p-5 sm:p-7">
-              <div className="mb-4">
-                <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
-                  {item.highlight}
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-[11px] font-bold uppercase tracking-wide text-cyan-200">
-                  {item.badge}
-                </span>
-                <h3 className="card-title">{item.title}</h3>
-              </div>
-              <p className="card-body mt-3 flex-1">{item.description}</p>
-              <div className="mt-4 grid grid-cols-1 gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-2.5 text-center sm:grid-cols-3 sm:gap-2 sm:p-3">
-                <div>
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
-                    Starting at
-                  </p>
-                  <p className="card-meta mt-1 text-slate-200">
-                    {item.startingAt}
-                  </p>
+        <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <StaggerItem key={service.id}>
+              <motion.article
+                className="premium-card group flex h-full flex-col p-7"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-purple/30 bg-accent-purple/10 text-2xl transition group-hover:border-accent-cyan/40 group-hover:bg-accent-cyan/10">
+                  {service.icon}
                 </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
-                    Delivery
-                  </p>
-                  <p className="card-meta mt-1 text-slate-200">
-                    {item.delivery}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">
-                    Revisions
-                  </p>
-                  <p className="card-meta mt-1 text-slate-200">
-                    {item.revisions}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 border-t border-white/10 pt-4 sm:mt-6 sm:pt-5">
-                <div className="flex flex-wrap gap-2">
-                  {item.stack.map((tech) => (
-                    <span key={tech} className="card-tag px-2.5 py-1">
-                      {tech}
+                <h3 className="font-display text-xl font-semibold text-text-primary">
+                  {service.title}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-text-secondary">
+                  {service.description}
+                </p>
+                <motion.div className="mt-5 flex flex-wrap gap-2 border-t border-white/[0.06] pt-5">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-text-secondary"
+                    >
+                      {tag}
                     </span>
                   ))}
-                </div>
-              </div>
-            </article>
+                </motion.div>
+              </motion.article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
+
+        <SectionReveal delay={0.2}>
+          <div className="mt-16 rounded-2xl border border-accent-purple/20 bg-gradient-to-r from-accent-purple/10 via-card/80 to-accent-cyan/10 p-8 text-center backdrop-blur-xl sm:p-10">
+            <h3 className="font-display text-2xl font-bold text-text-primary sm:text-3xl">
+              Ready to elevate your digital presence?
+            </h3>
+            <p className="mx-auto mt-3 max-w-xl text-text-secondary">
+              Tell me about your project and I&apos;ll share a clear plan, timeline,
+              and quote within 24 hours.
+            </p>
+            <a
+              href="/"
+              onClick={(e) => scrollToSection(e, "contact")}
+              className="btn-primary mt-6 inline-flex"
+            >
+              Get a Free Quote
+            </a>
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );

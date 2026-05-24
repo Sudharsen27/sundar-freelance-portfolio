@@ -1,7 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
+import { motion } from "framer-motion";
+import SectionReveal from "@/components/ui/SectionReveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import CustomSelect from "@/components/ui/CustomSelect";
 import { whatsappUrl } from "@/lib/whatsapp";
 
 const FIVERR_GIG_URL =
@@ -16,28 +19,56 @@ type FormState = {
   message: string;
 };
 
-function buildWhatsAppLink({
-  name,
-  email,
-  service,
-  budget,
-  timeline,
-  message,
-}: FormState) {
+function buildWhatsAppLink(form: FormState) {
   const text =
-    `Hi Sundar, I'm ${name}.\n\n` +
-    `Email: ${email}\n` +
-    `Service needed: ${service}\n` +
-    `Budget range: ${budget}\n` +
-    `Timeline: ${timeline}\n\n` +
-    `Project details:\n${message}`;
+    `Hi Sundar, I'm ${form.name}.\n\n` +
+    `Email: ${form.email}\n` +
+    `Service needed: ${form.service}\n` +
+    `Budget range: ${form.budget}\n` +
+    `Timeline: ${form.timeline}\n\n` +
+    `Project details:\n${form.message}`;
   return whatsappUrl(text);
 }
 
+const SERVICE_OPTIONS = [
+  { value: "Website Development", label: "Website Development" },
+  { value: "Responsive Websites", label: "Responsive Websites" },
+  { value: "Portfolio Websites", label: "Portfolio Websites" },
+  { value: "Landing Pages", label: "Landing Pages" },
+  { value: "UI/UX Design", label: "UI/UX Design" },
+  { value: "Business Websites", label: "Business Websites" },
+  { value: "Other", label: "Other" },
+];
+
+const BUDGET_OPTIONS = [
+  {
+    value: "Under ₹20,000 (approx. USD 250)",
+    label: "Under ₹20,000 (approx. USD 250)",
+  },
+  {
+    value: "₹20,000 – ₹42,000 (approx. USD 250–500)",
+    label: "₹20,000 – ₹42,000 (approx. USD 250–500)",
+  },
+  {
+    value: "₹42,000 – ₹84,000 (approx. USD 500–1,000)",
+    label: "₹42,000 – ₹84,000 (approx. USD 500–1,000)",
+  },
+  {
+    value: "₹84,000+ (approx. USD 1,000+)",
+    label: "₹84,000+ (approx. USD 1,000+)",
+  },
+  { value: "Let's discuss", label: "Let's discuss" },
+];
+
+const TIMELINE_OPTIONS = [
+  { value: "ASAP (within 3 days)", label: "ASAP (within 3 days)" },
+  { value: "Within 1 week", label: "Within 1 week" },
+  { value: "Within 2-4 weeks", label: "Within 2-4 weeks" },
+  { value: "Flexible", label: "Flexible" },
+];
+
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -53,269 +84,205 @@ export default function Contact() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+
+    if (!form.service || !form.budget || !form.timeline) {
+      setStatus("error");
+      setError("Please select a service, budget, and timeline.");
+      return;
+    }
+
     setStatus("sending");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          service: form.service,
-          budget: form.budget,
-          timeline: form.timeline,
-          message: form.message,
-          website: "", // honeypot
-        }),
+        body: JSON.stringify({ ...form, website: "" }),
       });
 
       const data = (await res.json().catch(() => null)) as
         | { success?: boolean; message?: string }
         | null;
+
       if (!res.ok || !data?.success) {
         throw new Error(data?.message || "Failed to send message.");
       }
 
       setStatus("sent");
-      setForm({
-        name: "",
-        email: "",
-        service: "",
-        budget: "",
-        timeline: "",
-        message: "",
-      });
+      setForm({ name: "", email: "", service: "", budget: "", timeline: "", message: "" });
     } catch (err: unknown) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Failed to send message.");
     }
   }
 
-  return (
-    <section id="contact" className="scroll-mt-28">
-      <div className="section-balance mx-auto max-w-3xl">
-        <div className="mb-10 text-center">
-          <h2 className="section-heading">Let&apos;s Build Something Together 🚀</h2>
-          <p className="section-subheading">
-            Available for freelance and full-time opportunities. Share your goals, and
-            I&apos;ll send a practical plan with timeline and next steps.
-          </p>
-        </div>
-        <div className="mb-6 rounded-xl border border-cyan-400/25 bg-cyan-500/10 px-4 py-3 text-center text-sm text-cyan-100">
-          Most leads receive a response within 24 hours.
-        </div>
-        <div className="mb-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <a
-            href={FIVERR_GIG_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-200 transition hover:border-emerald-400/50 hover:bg-emerald-500/15 sm:w-auto"
-          >
-            View my gig on Fiverr
-          </a>
-          <span className="hidden text-slate-600 sm:inline" aria-hidden>
-            ·
-          </span>
-          <a
-            href="mailto:sundarlingam272000@gmail.com"
-            className="text-sm font-medium text-slate-400 underline decoration-slate-600 underline-offset-4 transition hover:text-slate-300"
-          >
-            sundarlingam272000@gmail.com
-          </a>
-        </div>
-        <form className="premium-card p-6 sm:p-8" onSubmit={onSubmit}>
-          <div className="space-y-5">
-            <input
-              type="text"
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              className="hidden"
-              aria-hidden
-            />
-            <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-300">
-                Your name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                required
-                className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100 placeholder:text-slate-500"
-                placeholder="How should I address you?"
-                value={form.name}
-                onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100 placeholder:text-slate-500"
-                placeholder="your@email.com"
-                value={form.email}
-                onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-2 block text-sm font-medium text-slate-300"
-              >
-                Project details
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                required
-                className="glow-focus w-full resize-y rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100 placeholder:text-slate-500"
-                placeholder="What do you need built? (e.g. landing page, admin dashboard, API). Any deadline or budget range helps me quote faster."
-                value={form.message}
-                onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-              />
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label
-                  htmlFor="service"
-                  className="mb-2 block text-sm font-medium text-slate-300"
-                >
-                  Service needed
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  required
-                  className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
-                  value={form.service}
-                  onChange={(e) => setForm((p) => ({ ...p, service: e.target.value }))}
-                >
-                  <option value="" disabled>
-                    Select a service
-                  </option>
-                  <option value="Full-Stack Web Development">
-                    Full-Stack Web Development
-                  </option>
-                  <option value="Modern Frontend Development">
-                    Modern Frontend Development
-                  </option>
-                  <option value="API Development & Integration">
-                    API Development & Integration
-                  </option>
-                  <option value="Bug Fixing & Optimization">
-                    Bug Fixing & Optimization
-                  </option>
-                  <option value="Deployment & Cloud Setup">
-                    Deployment & Cloud Setup
-                  </option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label
-                  htmlFor="budget"
-                  className="mb-2 block text-sm font-medium text-slate-300"
-                >
-                  Budget range
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  required
-                  className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
-                  value={form.budget}
-                  onChange={(e) => setForm((p) => ({ ...p, budget: e.target.value }))}
-                >
-                  <option value="" disabled>
-                    Select budget
-                  </option>
-                  <option value="Under USD 250 (INR 20k approx.)">
-                    Under USD 250 (INR 20k approx.)
-                  </option>
-                  <option value="USD 250–500 (INR 20k–42k approx.)">
-                    USD 250-500 (INR 20k-42k approx.)
-                  </option>
-                  <option value="USD 500–1000 (INR 42k–84k approx.)">
-                    USD 500-1000 (INR 42k-84k approx.)
-                  </option>
-                  <option value="USD 1000+ (INR 84k+ approx.)">
-                    USD 1000+ (INR 84k+ approx.)
-                  </option>
-                  <option value="Let us discuss">Let us discuss</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label
-                htmlFor="timeline"
-                className="mb-2 block text-sm font-medium text-slate-300"
-              >
-                Project timeline
-              </label>
-              <select
-                id="timeline"
-                name="timeline"
-                required
-                className="glow-focus w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-3 text-slate-100"
-                value={form.timeline}
-                onChange={(e) => setForm((p) => ({ ...p, timeline: e.target.value }))}
-              >
-                <option value="" disabled>
-                  Select timeline
-                </option>
-                <option value="ASAP (within 3 days)">ASAP (within 3 days)</option>
-                <option value="Within 1 week">Within 1 week</option>
-                <option value="Within 2-4 weeks">Within 2-4 weeks</option>
-                <option value="Flexible">Flexible</option>
-              </select>
-            </div>
-            <div className="pt-2 space-y-3">
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="cta-primary w-full rounded-xl py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {status === "sending" ? "Sending..." : "Hire Me Now"}
-              </button>
+  const inputClass =
+    "glow-focus w-full rounded-xl border border-white/[0.08] bg-bg/80 px-4 py-3 text-text-primary placeholder:text-text-secondary/60 backdrop-blur-sm";
 
+  return (
+    <section id="contact" className="scroll-mt-28 py-20 sm:py-28">
+      <div className="section-container">
+        <SectionReveal>
+          <SectionHeader
+            badge="Contact"
+            title="Let's Build Something Great"
+            subtitle="Available for freelance projects and long-term collaborations. Share your vision and I'll respond with a clear plan within 24 hours."
+          />
+        </SectionReveal>
+
+        <SectionReveal delay={0.1}>
+          <div className="mx-auto max-w-3xl">
+            <motion.div
+              className="mb-8 rounded-2xl border border-accent-cyan/20 bg-accent-cyan/5 px-5 py-4 text-center text-sm text-accent-cyan backdrop-blur-sm"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Most inquiries receive a response within 24 hours
+            </motion.div>
+
+            <div className="mb-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <a
-                href={whatsappHref}
+                href={FIVERR_GIG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center rounded-xl border border-emerald-500/35 bg-emerald-500/10 py-3.5 text-sm font-semibold text-emerald-200 transition hover:border-emerald-400/45 hover:bg-emerald-500/15"
+                className="btn-outline w-full sm:w-auto"
               >
-                Send on WhatsApp
+                View Fiverr Gig
+              </a>
+              <a
+                href="mailto:sundarlingam272000@gmail.com"
+                className="text-sm text-text-secondary underline decoration-accent-purple/40 underline-offset-4 transition hover:text-text-primary"
+              >
+                sundarlingam272000@gmail.com
               </a>
             </div>
 
-            {status === "sent" ? (
-              <p className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3 text-center text-sm text-emerald-200">
-                Message sent successfully. I&apos;ll reply soon.
-              </p>
-            ) : null}
+            <form className="premium-card p-6 sm:p-8" onSubmit={onSubmit}>
+              <div className="space-y-5">
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
-            {status === "error" ? (
-              <p className="rounded-xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-center text-sm text-red-200">
-                {error || "Something went wrong. Please try again."}
-              </p>
-            ) : null}
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-text-secondary">
+                      Your name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      required
+                      className={inputClass}
+                      placeholder="How should I address you?"
+                      value={form.name}
+                      onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="mb-2 block text-sm font-medium text-text-secondary">
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      className={inputClass}
+                      placeholder="your@email.com"
+                      value={form.email}
+                      onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
+                    />
+                  </div>
+                </div>
 
-            <p className="text-center text-xs text-slate-500">
-              No spam - your message goes only to me. For urgent work, mention it in the
-              text.
-            </p>
+                <div>
+                  <label htmlFor="message" className="mb-2 block text-sm font-medium text-text-secondary">
+                    Project details
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    required
+                    className={`${inputClass} resize-y`}
+                    placeholder="What do you need built? Share your goals, deadline, and any inspiration."
+                    value={form.message}
+                    onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
+                  />
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <CustomSelect
+                    id="service"
+                    label="Service needed"
+                    value={form.service}
+                    placeholder="Select a service"
+                    options={SERVICE_OPTIONS}
+                    onChange={(service) => setForm((p) => ({ ...p, service }))}
+                    required
+                  />
+                  <CustomSelect
+                    id="budget"
+                    label="Budget range (INR / USD)"
+                    value={form.budget}
+                    placeholder="Select budget"
+                    options={BUDGET_OPTIONS}
+                    onChange={(budget) => setForm((p) => ({ ...p, budget }))}
+                    required
+                  />
+                </div>
+
+                <CustomSelect
+                  id="timeline"
+                  label="Project timeline"
+                  value={form.timeline}
+                  placeholder="Select timeline"
+                  options={TIMELINE_OPTIONS}
+                  onChange={(timeline) => setForm((p) => ({ ...p, timeline }))}
+                  required
+                />
+
+                <div className="space-y-3 pt-2">
+                  <motion.button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {status === "sending" ? "Sending..." : "Hire Me Now"}
+                  </motion.button>
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary flex w-full items-center justify-center"
+                  >
+                    Send on WhatsApp
+                  </a>
+                </div>
+
+                {status === "sent" ? (
+                  <p className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3 text-center text-sm text-emerald-200">
+                    Message sent successfully. I&apos;ll reply soon.
+                  </p>
+                ) : null}
+
+                {status === "error" ? (
+                  <p className="rounded-xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-center text-sm text-red-200">
+                    {error || "Something went wrong. Please try again."}
+                  </p>
+                ) : null}
+
+                <p className="text-center text-xs text-text-secondary">
+                  No spam — your message goes directly to me.
+                </p>
+              </div>
+            </form>
           </div>
-        </form>
+        </SectionReveal>
       </div>
     </section>
   );
