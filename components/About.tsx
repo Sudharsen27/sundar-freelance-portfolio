@@ -32,20 +32,20 @@ export default function About() {
           />
         </SectionReveal>
 
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <SectionReveal delay={0.1}>
             <div className="relative">
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20 blur-2xl" />
               <div className="premium-card relative overflow-hidden p-2">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                  <Image
-                    src="/about.png"
-                    alt="Sundar Lingam workspace"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
+                <Image
+                  src="/about-workspace.png"
+                  alt="Developer workspace with monitor, laptop, and purple ambient lighting"
+                  width={1024}
+                  height={682}
+                  unoptimized
+                  className="h-auto w-full rounded-xl"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
             </div>
           </SectionReveal>

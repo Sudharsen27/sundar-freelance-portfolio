@@ -30,9 +30,9 @@ export default function Hero() {
       />
 
       <div className="section-container relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-16">
           <motion.div
-            className="order-2 space-y-7 lg:order-1"
+            className="order-1 space-y-7 lg:order-1"
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -104,7 +104,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="relative order-1 mx-auto w-full max-w-sm px-4 lg:order-2 lg:max-w-md lg:px-0"
+            className="relative order-2 mx-auto w-full max-w-[17rem] px-2 sm:max-w-sm sm:px-4 lg:order-2 lg:max-w-md lg:px-0"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -133,7 +133,7 @@ export default function Hero() {
                   animate={{ opacity: [0.5, 0.8, 0.5] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-white">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white sm:aspect-[3/4]">
                   <Image
                     src="/sundar-hero.png"
                     alt="Sundar Lingam - Digital Creator & Freelancer"
