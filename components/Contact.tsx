@@ -207,7 +207,7 @@ export default function Contact() {
     "mb-2.5 block text-[13px] font-semibold uppercase tracking-[0.08em] text-text-secondary";
 
   return (
-    <section id="contact" className="relative scroll-mt-28 overflow-hidden py-20 sm:py-28 lg:py-32">
+    <section id="contact" className="relative scroll-mt-28 overflow-hidden py-20 sm:py-28 lg:py-32" aria-labelledby="contact-heading">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <motion.div
@@ -236,6 +236,7 @@ export default function Contact() {
             badge="Contact"
             title="Let's Build Something Great"
             subtitle="Available for freelance projects and long-term collaborations. Share your vision and I'll respond with a clear plan within 24 hours."
+            headingId="contact-heading"
           />
         </SectionReveal>
 
@@ -623,7 +624,8 @@ export default function Contact() {
                         className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-center text-sm text-emerald-200"
                       >
                         <p className="text-base font-semibold text-emerald-100">
-                          🎉 Thanks for reaching out!
+                          <span aria-hidden>🎉 </span>
+                          Thanks for reaching out!
                         </p>
                         <p className="mt-2 leading-relaxed">
                           I&apos;ve received your project inquiry and will respond within 24

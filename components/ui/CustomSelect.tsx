@@ -23,6 +23,7 @@ export default function CustomSelect({
 }: CustomSelectProps) {
   const autoId = useId();
   const selectId = id ?? autoId;
+  const labelId = `${selectId}-label`;
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +50,7 @@ export default function CustomSelect({
   return (
     <div ref={rootRef} className="relative">
       <label
+        id={labelId}
         htmlFor={selectId}
         className="mb-2 block text-sm font-medium text-text-secondary"
       >
@@ -84,7 +86,7 @@ export default function CustomSelect({
       {open ? (
         <ul
           role="listbox"
-          aria-labelledby={selectId}
+          aria-labelledby={labelId}
           className="absolute z-50 mt-2 w-full rounded-xl border border-white/10 bg-[#111827] p-1.5 shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_0_1px_rgba(139,92,246,0.15)] backdrop-blur-xl"
         >
           {options.map((opt) => {

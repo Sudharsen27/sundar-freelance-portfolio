@@ -10,7 +10,6 @@ type Project = {
   tech: string[];
   result: string;
   liveHref: string;
-  githubHref?: string;
   gradient: string;
   featured?: boolean;
 };
@@ -23,7 +22,6 @@ const projects: Project[] = [
     tech: ["Next.js", "FastAPI", "PostgreSQL", "Snowflake"],
     result: "End-to-end data quality governance",
     liveHref: "https://mdm-data-governance-platform-fronte.vercel.app/login",
-    githubHref: "https://github.com/Sudharsen27",
     gradient: "from-violet-900/80 via-card to-bg",
     featured: true,
   },
@@ -34,7 +32,6 @@ const projects: Project[] = [
     tech: ["Next.js", "Node.js", "MongoDB", "Razorpay"],
     result: "Checkout & payments integrated",
     liveHref: "https://shopsphere-frontend-self.vercel.app/",
-    githubHref: "https://github.com/Sudharsen27",
     gradient: "from-rose-900/80 via-card to-bg",
     featured: true,
   },
@@ -45,7 +42,6 @@ const projects: Project[] = [
     tech: ["Next.js", "Node.js", "Snowflake"],
     result: "Centralized data analytics",
     liveHref: "https://student-dashboard-snowflake-fronten.vercel.app/",
-    githubHref: "https://github.com/Sudharsen27",
     gradient: "from-indigo-900/80 via-card to-bg",
     featured: true,
   },
@@ -73,7 +69,7 @@ const projects: Project[] = [
       "Responsive, SEO-optimized website with reusable UI components deployed on Cloudflare Pages.",
     tech: ["Next.js", "Cloudflare", "SEO"],
     result: "Delivered in 5 days",
-    liveHref: "https://schoolofsustainability-astro-home.pages.dev/",
+    liveHref: "https://sos-website-ruby.vercel.app/",
     gradient: "from-emerald-900/80 via-card to-bg",
   },
   {
@@ -113,23 +109,16 @@ function ExternalIcon() {
   );
 }
 
-function GitHubIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M12 2C6.477 2 2 6.58 2 12.253c0 4.536 2.943 8.392 7.023 9.748.514.095.703-.223.703-.496 0-.246-.009-.892-.014-1.75-2.856.628-3.46-1.404-3.46-1.404-.468-1.201-1.142-1.52-1.142-1.52-.933-.644.071-.631.071-.631 1.032.073 1.575 1.074 1.575 1.074.918 1.586 2.407 1.127 2.993.861.093-.672.358-1.127.652-1.386-2.28-.262-4.678-1.16-4.678-5.166 0-1.141.403-2.073 1.063-2.804-.107-.262-.462-1.317.1-2.743 0 0 .867-.28 2.84 1.07a9.65 9.65 0 0 1 2.52-.345c.854.004 1.714.117 2.52.345 1.972-1.35 2.837-1.07 2.837-1.07.564 1.426.21 2.481.103 2.743.662.731 1.06 1.663 1.06 2.804 0 4.018-2.403 4.9-4.694 5.155.37.322.698.956.698 1.926 0 1.39-.013 2.512-.013 2.854 0 .277.186.597.708.496C19.059 20.645 22 16.788 22 12.253 22 6.58 17.523 2 12 2Z" />
-    </svg>
-  );
-}
-
 export default function Projects() {
   return (
-    <section id="projects" className="scroll-mt-28 py-20 sm:py-28">
+    <section id="projects" className="scroll-mt-28 py-20 sm:py-28" aria-labelledby="projects-heading">
       <div className="section-container">
         <SectionReveal>
           <SectionHeader
             badge="Featured Work"
             title="Projects That Speak Results"
             subtitle="Live products built for real clients — premium design, solid engineering, and measurable business impact."
+            headingId="projects-heading"
           />
         </SectionReveal>
 
@@ -190,28 +179,17 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-auto flex gap-3 pt-2">
+                  <div className="mt-auto pt-2">
                     <a
                       href={project.liveHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary flex flex-1 items-center justify-center gap-2 py-2.5 text-sm"
+                      className="btn-primary flex w-full items-center justify-center gap-2 py-2.5 text-sm"
                       aria-label={`Live demo: ${project.title}`}
                     >
                       Live Demo
                       <ExternalIcon />
                     </a>
-                    {project.githubHref ? (
-                      <a
-                        href={project.githubHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary flex items-center justify-center gap-2 px-4 py-2.5 text-sm"
-                        aria-label={`GitHub: ${project.title}`}
-                      >
-                        <GitHubIcon />
-                      </a>
-                    ) : null}
                   </div>
                 </div>
               </motion.article>

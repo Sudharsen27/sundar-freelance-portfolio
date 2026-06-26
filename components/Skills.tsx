@@ -45,13 +45,14 @@ const tools = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="scroll-mt-28 py-20 sm:py-28">
+    <section id="skills" className="scroll-mt-28 py-20 sm:py-28" aria-labelledby="skills-heading">
       <div className="section-container">
         <SectionReveal>
           <SectionHeader
             badge="Skills"
             title="Tools & Expertise"
             subtitle="A modern tech stack combined with design thinking — built to deliver premium digital products that perform."
+            headingId="skills-heading"
           />
         </SectionReveal>
 
@@ -69,13 +70,21 @@ export default function Skills() {
                         <span className="text-text-secondary">{skill.name}</span>
                         <span className="font-medium text-accent-cyan">{skill.level}%</span>
                       </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+                      <div
+                        className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]"
+                        role="progressbar"
+                        aria-valuenow={skill.level}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-label={`${skill.name} proficiency`}
+                      >
                         <motion.div
                           className="h-full rounded-full bg-gradient-to-r from-accent-purple to-accent-cyan"
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                          aria-hidden
                         />
                       </div>
                     </div>

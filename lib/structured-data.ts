@@ -6,7 +6,7 @@ import {
   PERSON_NAME,
   SITE_DESCRIPTION,
 } from "@/lib/brand";
-import { FAQ_ITEMS } from "@/lib/faq";
+import { buildFaqPageSchema } from "@/lib/faq-schema";
 import { SERVICES } from "@/lib/services-data";
 
 type StructuredDataOptions = {
@@ -23,7 +23,6 @@ export function buildStructuredDataGraph({
     organization: `${siteUrl}/#organization`,
     website: `${siteUrl}/#website`,
     professionalService: `${siteUrl}/#professional-service`,
-    faq: `${siteUrl}/#faq`,
   };
 
   const sameAs = ["https://github.com/Sudharsen27", linkedInUrl];
@@ -115,19 +114,7 @@ export function buildStructuredDataGraph({
           })),
         },
       },
-      {
-        "@type": "FAQPage",
-        "@id": ids.faq,
-        url: `${siteUrl}/contact`,
-        mainEntity: FAQ_ITEMS.map((item) => ({
-          "@type": "Question",
-          name: item.q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: item.a,
-          },
-        })),
-      },
+      buildFaqPageSchema(siteUrl),
     ],
   };
 }

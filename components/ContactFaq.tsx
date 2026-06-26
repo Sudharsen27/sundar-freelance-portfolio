@@ -11,12 +11,12 @@ export default function ContactFaq() {
 
   return (
     <SectionReveal delay={0.12}>
-      <div className="mx-auto mt-16 max-w-3xl sm:mt-20">
+      <div id="faq" className="mx-auto mt-16 max-w-3xl sm:mt-20" aria-labelledby="contact-faq-heading">
         <div className="mb-8 text-center sm:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-cyan">
             FAQ
           </p>
-          <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-text-primary sm:text-3xl">
+          <h3 id="contact-faq-heading" className="mt-2 font-display text-2xl font-bold tracking-tight text-text-primary sm:text-3xl">
             Common questions
           </h3>
           <p className="mt-3 text-sm leading-relaxed text-text-secondary sm:text-base">
@@ -46,7 +46,7 @@ export default function ContactFaq() {
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
                   >
-                    <span className="text-sm font-semibold text-text-primary sm:text-[15px]">
+                    <span id={`faq-question-${index}`} className="text-sm font-semibold text-text-primary sm:text-[15px]">
                       {item.q}
                     </span>
                     <motion.span
@@ -65,7 +65,7 @@ export default function ContactFaq() {
                     <motion.div
                       id={`faq-panel-${index}`}
                       role="region"
-                      aria-labelledby={`faq-trigger-${index}`}
+                      aria-labelledby={`faq-question-${index}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

@@ -93,4 +93,16 @@ body {
   .nav-link {
     @apply rounded-lg px-3 py-2 text-sm text-text-secondary transition-colors duration-200 hover:bg-white/[0.05] hover:text-text-primary;
   }
+
+  .nav-link-active {
+    @apply bg-white/[0.05] text-text-primary;
+  }
+
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan px-4 py-2.5 text-sm font-semibold text-white shadow-glowPurple outline-none ring-2 ring-accent-cyan/50;
+  }
 }

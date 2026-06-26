@@ -20,7 +20,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-28 py-20 sm:py-28">
+    <section id="about" className="scroll-mt-28 py-20 sm:py-28" aria-labelledby="about-heading">
       <div className="section-container">
         <SectionReveal>
           <SectionHeader
@@ -28,6 +28,7 @@ export default function About() {
             title="Your Partner in Digital Growth"
             subtitle="I'm a digital creator and full-stack developer who helps brands, startups, and creators launch premium web experiences that build trust and drive results."
             align="left"
+            headingId="about-heading"
           />
         </SectionReveal>
 
@@ -66,7 +67,7 @@ export default function About() {
                 {highlights.map((line) => (
                   <StaggerItem key={line}>
                     <div className="flex items-start gap-3 text-text-secondary">
-                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-purple/20 text-xs text-accent-purple">
+                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-purple/20 text-xs text-accent-purple" aria-hidden>
                         ✓
                       </span>
                       {line}
@@ -76,7 +77,7 @@ export default function About() {
               </StaggerContainer>
 
               <motion.a
-                href="/contact"
+                href="/#contact"
                 className="btn-primary mt-4 inline-flex"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}

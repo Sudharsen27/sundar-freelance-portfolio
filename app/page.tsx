@@ -8,7 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import ScrollOnNavigate from "@/components/ScrollOnNavigate";
+import JsonLd from "@/components/JsonLd";
 import { getSiteUrl } from "@/lib/site";
 import { buildStructuredDataGraph } from "@/lib/structured-data";
 
@@ -22,10 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
 
       <div className="relative min-h-screen">
         <div
@@ -37,10 +34,13 @@ export default function Home() {
           }}
         />
 
-        <Navbar />
-        <ScrollOnNavigate />
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
 
-        <main>
+        <Navbar />
+
+        <main id="main-content" tabIndex={-1}>
           <Hero />
           <About />
           <Services />

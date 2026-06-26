@@ -56,6 +56,7 @@ export default function Testimonials() {
             badge="Testimonials"
             title="Trusted by Clients"
             subtitle="Real feedback from founders, managers, and product leads who needed reliable digital work delivered on time."
+            headingId="testimonials-heading"
           />
         </SectionReveal>
 

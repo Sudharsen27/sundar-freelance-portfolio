@@ -7,7 +7,7 @@ import { SERVICES } from "@/lib/services-data";
 
 export default function Services() {
   return (
-    <section id="services" className="relative scroll-mt-28 py-20 sm:py-28">
+    <section id="services" className="relative scroll-mt-28 py-20 sm:py-28" aria-labelledby="services-heading">
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
         <motion.div
           className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent-purple/10 blur-[120px]"
@@ -27,6 +27,7 @@ export default function Services() {
             badge="Services"
             title="What I Can Build For You"
             subtitle="Premium digital services tailored for brands, startups, and creators who want a professional online presence that converts."
+            headingId="services-heading"
           />
         </SectionReveal>
 
@@ -38,7 +39,7 @@ export default function Services() {
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-purple/30 bg-accent-purple/10 text-2xl transition group-hover:border-accent-cyan/40 group-hover:bg-accent-cyan/10">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-purple/30 bg-accent-purple/10 text-2xl transition group-hover:border-accent-cyan/40 group-hover:bg-accent-cyan/10" aria-hidden>
                   {service.icon}
                 </div>
                 <h3 className="font-display text-xl font-semibold text-text-primary">
@@ -72,7 +73,7 @@ export default function Services() {
               and quote within 24 hours.
             </p>
             <a
-              href="/contact"
+              href="/#contact"
               className="btn-primary mt-6 inline-flex"
             >
               Get a Free Quote

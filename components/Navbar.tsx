@@ -1,16 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { sectionPath } from "@/lib/routes";
+import { sectionPath, type SectionId } from "@/lib/routes";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { BRAND_NAME } from "@/lib/brand";
 
 const FIVERR_GIG_URL =
   process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
 
-const links = [
+const links: { id: SectionId; label: string }[] = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "services", label: "Services" },
@@ -20,10 +20,24 @@ const links = [
   { id: "contact", label: "Contact" },
 ];
 
+const sectionIds = links.map(({ id }) => id);
+
+function navLinkClass(isActive: boolean, mobile = false) {
+  if (mobile) {
+    return `block rounded-xl px-4 py-3 transition hover:bg-white/[0.05] hover:text-text-primary ${
+      isActive ? "bg-white/[0.05] text-text-primary" : "text-text-secondary"
+    }`;
+  }
+  return `nav-link${isActive ? " nav-link-active" : ""}`;
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showHireModal, setShowHireModal] = useState(false);
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
+  const hireModalRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,12 +46,87 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setShowHireModal(false);
+    function syncHashSection() {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const id = hash.replace(/^#/, "");
+      if (sectionIds.includes(id as SectionId)) {
+        setActiveSection(id as SectionId);
+      }
     }
-    if (showHireModal) window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+
+    syncHashSection();
+    window.addEventListener("hashchange", syncHashSection);
+    return () => window.removeEventListener("hashchange", syncHashSection);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        const top = visible[0]?.target.id;
+        if (top && sectionIds.includes(top as SectionId)) {
+          setActiveSection(top as SectionId);
+        }
+      },
+      { rootMargin: "-35% 0px -50% 0px", threshold: [0, 0.2, 0.4, 0.6] }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!showHireModal) return;
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
+    const dialog = hireModalRef.current;
+    if (!dialog) return;
+
+    const focusable = dialog.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first?.focus();
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setShowHireModal(false);
+        return;
+      }
+
+      if (e.key !== "Tab" || focusable.length === 0) return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      previousFocusRef.current?.focus();
+    };
   }, [showHireModal]);
+
+  function closeHireModal() {
+    setShowHireModal(false);
+  }
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
@@ -67,7 +156,8 @@ export default function Navbar() {
             <li key={id}>
               <a
                 href={sectionPath(id)}
-                className="nav-link"
+                className={navLinkClass(activeSection === id)}
+                aria-current={activeSection === id ? "page" : undefined}
               >
                 {label}
               </a>
@@ -117,7 +207,8 @@ export default function Navbar() {
                   <a
                     href={sectionPath(id)}
                     onClick={() => setIsOpen(false)}
-                    className="block rounded-xl px-4 py-3 text-text-secondary transition hover:bg-white/[0.05] hover:text-text-primary"
+                    className={navLinkClass(activeSection === id, true)}
+                    aria-current={activeSection === id ? "page" : undefined}
                   >
                     {label}
                   </a>
@@ -146,22 +237,27 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-bg/80 px-4 backdrop-blur-sm"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Hire Me Options"
-            onClick={() => setShowHireModal(false)}
+            className="fixed inset-0 z-[70] flex items-center justify-center px-4"
           >
+            <button
+              type="button"
+              className="absolute inset-0 bg-bg/80 backdrop-blur-sm"
+              aria-label="Close dialog"
+              onClick={closeHireModal}
+            />
             <motion.div
+              ref={hireModalRef}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="glass-strong w-full max-w-md p-6"
-              onClick={(e) => e.stopPropagation()}
+              className="glass-strong relative z-10 w-full max-w-md p-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="hire-modal-title"
             >
               <div className="mb-5 flex items-start justify-between gap-3">
                 <div>
-                  <p className="font-display text-xl font-bold text-text-primary">
+                  <p id="hire-modal-title" className="font-display text-xl font-bold text-text-primary">
                     Let&apos;s work together
                   </p>
                   <p className="mt-1 text-sm text-text-secondary">
@@ -170,7 +266,7 @@ export default function Navbar() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => setShowHireModal(false)}
+                  onClick={closeHireModal}
                   className="rounded-lg border border-white/10 px-3 py-1.5 text-sm text-text-secondary hover:text-text-primary"
                 >
                   Close
@@ -182,14 +278,14 @@ export default function Navbar() {
                   href={whatsappUrl("Hi Sundar, I want to hire you for a project.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setShowHireModal(false)}
+                  onClick={closeHireModal}
                   className="flex w-full items-center justify-center rounded-xl border border-emerald-500/35 bg-emerald-500/10 py-3 text-sm font-semibold text-emerald-200 transition hover:bg-emerald-500/15"
                 >
                   Chat on WhatsApp
                 </a>
                 <a
                   href={sectionPath("contact")}
-                  onClick={() => setShowHireModal(false)}
+                  onClick={closeHireModal}
                   className="btn-primary w-full"
                 >
                   Open Contact Form
@@ -198,7 +294,7 @@ export default function Navbar() {
                   href={FIVERR_GIG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setShowHireModal(false)}
+                  onClick={closeHireModal}
                   className="btn-secondary w-full"
                 >
                   View Fiverr Gig

@@ -13,10 +13,7 @@ const trustPoints = [
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative min-h-[90vh] scroll-mt-28 overflow-hidden pt-8 sm:pt-12 lg:pt-16"
-    >
+    <section id="home" className="relative min-h-[90vh] scroll-mt-28 overflow-hidden pt-8 sm:pt-12 lg:pt-16" aria-labelledby="home-heading">
       <FloatingOrbs />
 
       <motion.div
@@ -42,7 +39,7 @@ export default function Hero() {
               Available for new projects
             </span>
 
-            <h1 className="font-display text-[1.75rem] font-bold leading-[1.22] tracking-tight text-pretty text-text-primary sm:text-4xl sm:leading-[1.12] lg:text-[3.25rem] lg:leading-[1.1]">
+            <h1 id="home-heading" className="font-display text-[1.75rem] font-bold leading-[1.22] tracking-tight text-pretty text-text-primary sm:text-4xl sm:leading-[1.12] lg:text-[3.25rem] lg:leading-[1.1]">
               <span className="block sm:inline">Helping Brands Build</span>{" "}
               <span className="block sm:inline">
                 Their{" "}
@@ -62,7 +59,9 @@ export default function Hero() {
                   key={point}
                   className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm text-text-secondary backdrop-blur-sm"
                 >
-                  <span className="mr-1.5 text-accent-cyan">✓</span>
+                  <span className="mr-1.5 text-accent-cyan" aria-hidden>
+                    ✓
+                  </span>
                   {point}
                 </span>
               ))}
@@ -70,19 +69,19 @@ export default function Hero() {
 
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <a
-                href="/projects"
+                href="/#projects"
                 className="btn-primary w-full sm:w-auto"
               >
                 View Portfolio
               </a>
               <a
-                href="/contact"
+                href="/#contact"
                 className="btn-outline w-full sm:w-auto"
               >
                 Hire Me
               </a>
               <a
-                href="/contact"
+                href="/#contact"
                 className="btn-secondary w-full sm:w-auto"
               >
                 Let&apos;s Talk
