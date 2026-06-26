@@ -22,7 +22,7 @@ export default function Home() {
     name: "Sundar Lingam",
     url: siteUrl,
     jobTitle: "Digital Creator & Freelance Developer",
-    email: "mailto:sundarlingam272000@gmail.com",
+    email: "mailto:hello.sundardigital@gmail.com",
     telephone: "+916382519651",
     sameAs: ["https://github.com/Sudharsen27", linkedInUrl],
     knowsAbout: [

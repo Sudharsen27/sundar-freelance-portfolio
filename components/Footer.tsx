@@ -70,10 +70,10 @@ export default function Footer() {
           <div className="mt-8 flex flex-col items-center gap-2 border-t border-white/[0.06] pt-8 text-center text-sm text-text-secondary sm:flex-row sm:justify-between">
             <p>
               <a
-                href="mailto:sundarlingam272000@gmail.com"
+                href="mailto:hello.sundardigital@gmail.com"
                 className="text-text-primary underline decoration-accent-purple/40 underline-offset-4 transition hover:decoration-accent-cyan"
               >
-                sundarlingam272000@gmail.com
+                hello.sundardigital@gmail.com
               </a>
               <span className="mx-2 hidden sm:inline" aria-hidden>
                 ·

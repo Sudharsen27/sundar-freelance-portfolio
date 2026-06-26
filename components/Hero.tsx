@@ -95,10 +95,10 @@ export default function Hero() {
             <p className="text-sm text-text-secondary">
               Response within 24 hours ·{" "}
               <a
-                href="mailto:sundarlingam272000@gmail.com"
+                href="mailto:hello.sundardigital@gmail.com"
                 className="text-text-primary underline decoration-accent-purple/50 underline-offset-4 transition hover:decoration-accent-cyan"
               >
-                sundarlingam272000@gmail.com
+                hello.sundardigital@gmail.com
               </a>
             </p>
           </motion.div>
