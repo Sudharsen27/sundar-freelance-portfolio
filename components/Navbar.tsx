@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { scrollToSection } from "@/lib/scroll";
+import { sectionPath } from "@/lib/routes";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { BRAND_NAME } from "@/lib/brand";
 
 const FIVERR_GIG_URL =
   process.env.NEXT_PUBLIC_FIVERR_URL || "https://www.fiverr.com/";
@@ -38,14 +39,6 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [showHireModal]);
 
-  function handleNavClick(
-    e: React.MouseEvent<HTMLAnchorElement>,
-    sectionId: string
-  ) {
-    setIsOpen(false);
-    scrollToSection(e, sectionId);
-  }
-
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
       <nav
@@ -57,15 +50,15 @@ export default function Navbar() {
         aria-label="Primary"
       >
         <a
-          href="/"
-          onClick={(e) => handleNavClick(e, "home")}
+          href={sectionPath("home")}
+          onClick={() => setIsOpen(false)}
           className="inline-flex items-center gap-2.5"
         >
           <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-accent-purple/30 bg-bg ring-1 ring-accent-cyan/20">
-            <Image src="/icon.svg" alt="Sundar logo" width={32} height={32} priority />
+            <Image src="/icon.svg" alt={`${BRAND_NAME} logo`} width={32} height={32} priority />
           </span>
           <span className="font-display text-lg font-semibold text-text-primary">
-            Sundar
+            {BRAND_NAME}
           </span>
         </a>
 
@@ -73,8 +66,7 @@ export default function Navbar() {
           {links.map(({ id, label }) => (
             <li key={id}>
               <a
-                href="/"
-                onClick={(e) => handleNavClick(e, id)}
+                href={sectionPath(id)}
                 className="nav-link"
               >
                 {label}
@@ -123,8 +115,8 @@ export default function Navbar() {
               {links.map(({ id, label }) => (
                 <li key={id}>
                   <a
-                    href="/"
-                    onClick={(e) => handleNavClick(e, id)}
+                    href={sectionPath(id)}
+                    onClick={() => setIsOpen(false)}
                     className="block rounded-xl px-4 py-3 text-text-secondary transition hover:bg-white/[0.05] hover:text-text-primary"
                   >
                     {label}
@@ -195,16 +187,13 @@ export default function Navbar() {
                 >
                   Chat on WhatsApp
                 </a>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    setShowHireModal(false);
-                    scrollToSection(e, "contact");
-                  }}
+                <a
+                  href={sectionPath("contact")}
+                  onClick={() => setShowHireModal(false)}
                   className="btn-primary w-full"
                 >
                   Open Contact Form
-                </button>
+                </a>
                 <a
                   href={FIVERR_GIG_URL}
                   target="_blank"

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import FloatingOrbs from "@/components/ui/FloatingOrbs";
-import { scrollToSection } from "@/lib/scroll";
+import { PERSON_NAME, JOB_TITLE } from "@/lib/brand";
 
 const trustPoints = [
   "8+ projects delivered",
@@ -70,22 +70,19 @@ export default function Hero() {
 
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <a
-                href="/"
-                onClick={(e) => scrollToSection(e, "projects")}
+                href="/projects"
                 className="btn-primary w-full sm:w-auto"
               >
                 View Portfolio
               </a>
               <a
-                href="/"
-                onClick={(e) => scrollToSection(e, "contact")}
+                href="/contact"
                 className="btn-outline w-full sm:w-auto"
               >
                 Hire Me
               </a>
               <a
-                href="/"
-                onClick={(e) => scrollToSection(e, "contact")}
+                href="/contact"
                 className="btn-secondary w-full sm:w-auto"
               >
                 Let&apos;s Talk
@@ -112,7 +109,7 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-purple/40 via-accent-cyan/30 to-accent-purple/20 blur-3xl animate-pulse-glow" />
 
             <motion.div
-              className="relative pb-4 sm:pb-0"
+              className="relative"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -133,31 +130,18 @@ export default function Hero() {
                   animate={{ opacity: [0.5, 0.8, 0.5] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
-                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white sm:aspect-[3/4]">
+                <div className="relative aspect-[832/1024] overflow-hidden rounded-2xl bg-white">
                   <Image
                     src="/sundar-hero.png"
-                    alt="Sundar Lingam - Digital Creator & Freelancer"
-                    fill
-                    className="object-contain object-center"
+                    alt={`${PERSON_NAME} - ${JOB_TITLE}`}
+                    width={832}
+                    height={1024}
+                    className="h-full w-full object-contain object-center"
                     priority
-                    unoptimized
                     sizes="(max-width: 1024px) 80vw, 400px"
                   />
                 </div>
               </div>
-
-              <motion.div
-                className="relative z-10 mx-auto mt-4 flex w-fit max-w-full justify-center rounded-full border border-white/10 bg-card/95 px-4 py-2 text-center shadow-glowCyan backdrop-blur-xl sm:absolute sm:bottom-0 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:px-5 sm:py-2.5 lg:-bottom-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-              >
-                <p className="text-xs font-medium text-text-primary sm:whitespace-nowrap sm:text-sm">
-                  <span className="gradient-text font-semibold">Sundar Lingam</span>
-                  <span className="mx-1.5 text-text-secondary sm:mx-2">·</span>
-                  <span>Digital Creator</span>
-                </p>
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>

@@ -8,55 +8,23 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ScrollOnNavigate from "@/components/ScrollOnNavigate";
+import { getSiteUrl } from "@/lib/site";
+import { buildStructuredDataGraph } from "@/lib/structured-data";
 
 export default function Home() {
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
+  const siteUrl = getSiteUrl();
   const linkedInUrl =
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     "https://www.linkedin.com/in/sundar-lingam";
 
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Sundar Lingam",
-    url: siteUrl,
-    jobTitle: "Digital Creator & Freelance Developer",
-    email: "mailto:hello.sundardigital@gmail.com",
-    telephone: "+916382519651",
-    sameAs: ["https://github.com/Sudharsen27", linkedInUrl],
-    knowsAbout: [
-      "Website Development",
-      "UI/UX Design",
-      "React",
-      "Next.js",
-      "Landing Pages",
-      "Business Websites",
-    ],
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Sundar Lingam Portfolio",
-    url: siteUrl,
-    inLanguage: "en",
-    potentialAction: {
-      "@type": "ContactAction",
-      target: `${siteUrl}/#contact`,
-      name: "Contact Sundar Lingam",
-    },
-  };
+  const structuredData = buildStructuredDataGraph({ siteUrl, linkedInUrl });
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
       <div className="relative min-h-screen">
@@ -70,6 +38,7 @@ export default function Home() {
         />
 
         <Navbar />
+        <ScrollOnNavigate />
 
         <main>
           <Hero />

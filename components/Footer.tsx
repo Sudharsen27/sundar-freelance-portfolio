@@ -1,5 +1,5 @@
 import { whatsappUrl } from "@/lib/whatsapp";
-
+import { BRAND_NAME, JOB_TITLE, PERSON_NAME } from "@/lib/brand";
 const linkedInUrl =
   process.env.NEXT_PUBLIC_LINKEDIN_URL ||
   "https://www.linkedin.com/in/sundar-lingam";
@@ -44,13 +44,10 @@ export default function Footer() {
           <div className="flex flex-col items-center gap-8 sm:flex-row sm:justify-between">
             <div className="text-center sm:text-left">
               <p className="font-display text-xl font-bold text-text-primary">
-                Sundar Lingam
+                {PERSON_NAME}
               </p>
-              <p className="mt-1 text-sm text-text-secondary">
-                Digital Creator & Freelance Developer
-              </p>
+              <p className="mt-1 text-sm text-text-secondary">{JOB_TITLE}</p>
             </div>
-
             <div className="flex flex-wrap justify-center gap-3">
               {socialLinks.map((link) => (
                 <a
@@ -82,7 +79,7 @@ export default function Footer() {
                 +91 6382519651
               </a>
             </p>
-            <p>Sundar © 2026 · All Rights Reserved</p>
+            <p>{BRAND_NAME} © 2026 · All Rights Reserved</p>
           </div>
         </div>
       </div>

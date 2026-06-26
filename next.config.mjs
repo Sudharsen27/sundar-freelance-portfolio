@@ -7,6 +7,8 @@ const nextConfig = {
       { source: "/why-me", destination: "/" },
       { source: "/services", destination: "/" },
       { source: "/projects", destination: "/" },
+      { source: "/skills", destination: "/" },
+      { source: "/testimonials", destination: "/" },
       { source: "/contact", destination: "/" },
     ];
   },

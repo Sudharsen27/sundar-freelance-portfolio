@@ -3,58 +3,7 @@
 import { motion } from "framer-motion";
 import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { scrollToSection } from "@/lib/scroll";
-
-const services = [
-  {
-    id: "web-dev",
-    icon: "🌐",
-    title: "Website Development",
-    description:
-      "Custom websites built from scratch with modern tech stacks, optimized performance, and scalable architecture for long-term growth.",
-    tags: ["React", "Next.js", "Node.js"],
-  },
-  {
-    id: "responsive",
-    icon: "📱",
-    title: "Responsive Websites",
-    description:
-      "Pixel-perfect layouts that look stunning on every screen — mobile, tablet, and desktop — with smooth interactions throughout.",
-    tags: ["Mobile-first", "Tailwind CSS", "Accessibility"],
-  },
-  {
-    id: "portfolio",
-    icon: "✨",
-    title: "Portfolio Websites",
-    description:
-      "Stand-out personal and creative portfolios designed to showcase your work beautifully and attract the right opportunities.",
-    tags: ["Personal Brand", "Animations", "SEO"],
-  },
-  {
-    id: "landing",
-    icon: "🚀",
-    title: "Landing Pages",
-    description:
-      "High-converting landing pages crafted to capture attention, communicate value fast, and turn visitors into leads or customers.",
-    tags: ["Conversion", "A/B Ready", "Fast Load"],
-  },
-  {
-    id: "uiux",
-    icon: "🎨",
-    title: "UI/UX Design",
-    description:
-      "Clean, intuitive interfaces with thoughtful user flows — blending aesthetics with usability for memorable digital experiences.",
-    tags: ["Figma", "Wireframes", "Prototypes"],
-  },
-  {
-    id: "business",
-    icon: "💼",
-    title: "Business Websites",
-    description:
-      "Professional business websites that establish credibility, communicate your services clearly, and generate real inquiries.",
-    tags: ["Corporate", "CMS Ready", "Analytics"],
-  },
-];
+import { SERVICES } from "@/lib/services-data";
 
 export default function Services() {
   return (
@@ -82,7 +31,7 @@ export default function Services() {
         </SectionReveal>
 
         <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
+          {SERVICES.map((service) => (
             <StaggerItem key={service.id}>
               <motion.article
                 className="premium-card group flex h-full flex-col p-7"
@@ -123,8 +72,7 @@ export default function Services() {
               and quote within 24 hours.
             </p>
             <a
-              href="/"
-              onClick={(e) => scrollToSection(e, "contact")}
+              href="/contact"
               className="btn-primary mt-6 inline-flex"
             >
               Get a Free Quote

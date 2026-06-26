@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { scrollToSection } from "@/lib/scroll";
 
 const highlights = [
   "Modern, conversion-focused website design",
@@ -42,7 +41,6 @@ export default function About() {
                   alt="Developer workspace with monitor, laptop, and purple ambient lighting"
                   width={1024}
                   height={682}
-                  unoptimized
                   className="h-auto w-full rounded-xl"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -78,8 +76,7 @@ export default function About() {
               </StaggerContainer>
 
               <motion.a
-                href="/"
-                onClick={(e) => scrollToSection(e, "contact")}
+                href="/contact"
                 className="btn-primary mt-4 inline-flex"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}

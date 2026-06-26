@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import VisitNotifier from "@/components/VisitNotifier";
+import { getSiteUrl } from "@/lib/site";
+import { BRAND_NAME, JOB_TITLE, OG_ALT, PAGE_TITLE, PERSON_NAME } from "@/lib/brand";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,22 +19,13 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://sundarlingam.vercel.app";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", type: "image/png" },
-    ],
-    shortcut: ["/icon.svg", "/icon.png"],
-    apple: "/icon.png",
-  },
   title: {
-    default: "Sundar Lingam | Digital Creator & Freelance Developer",
-    template: "%s | Sundar Lingam",
+    default: PAGE_TITLE,
+    template: `%s | ${PERSON_NAME}`,
   },
   description:
     "Premium digital freelancer helping brands, startups, and creators build modern websites, landing pages, and digital experiences that drive business growth.",
@@ -47,9 +40,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   category: "technology",
-  authors: [{ name: "Sundar Lingam" }],
-  creator: "Sundar Lingam",
-  publisher: "Sundar Lingam",
+  authors: [{ name: PERSON_NAME }],
+  creator: PERSON_NAME,
+  publisher: PERSON_NAME,
   robots: {
     index: true,
     follow: true,
@@ -62,28 +55,24 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Sundar Lingam | Digital Creator & Freelance Developer",
+    title: PAGE_TITLE,
     description:
-      "Helping brands build their digital presence with modern websites and premium digital experiences.",
+      `${PERSON_NAME} — ${JOB_TITLE} at ${BRAND_NAME}. Modern websites, landing pages, and full-stack web apps for brands and startups.`,
     type: "website",
     url: "/",
-    siteName: "Sundar Lingam",
-    images: [
-      {
-        url: "/sundar-hero.png",
-        width: 800,
-        height: 800,
-        alt: "Sundar Lingam - Digital Creator & Freelancer",
-      },
-    ],
+    siteName: BRAND_NAME,
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sundar Lingam | Digital Creator & Freelancer",
+    title: PAGE_TITLE,
     description:
-      "Modern websites, digital experiences, and business growth for brands and startups.",
-    images: ["/sundar-hero.png"],
+      `${PERSON_NAME} — ${JOB_TITLE}. Modern websites, landing pages, and full-stack web apps for brands and startups.`,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050816",
 };
 
 export default function RootLayout({

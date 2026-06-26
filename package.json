@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run icons && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "latest",
@@ -25,7 +26,9 @@
     "eslint": "^9",
     "eslint-config-next": "latest",
     "postcss": "^8.4.49",
+    "sharp": "^0.35.2",
     "tailwindcss": "^3.4.17",
+    "to-ico": "^1.1.5",
     "typescript": "^6.0.2"
   }
 }
