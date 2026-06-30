@@ -49,6 +49,7 @@ export function buildStructuredDataGraph({
           "UI/UX Design",
           "React",
           "Next.js",
+          "Astro",
           "Landing Pages",
           "Business Websites",
         ],

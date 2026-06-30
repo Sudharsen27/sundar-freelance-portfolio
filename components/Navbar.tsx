@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sectionPath, type SectionId } from "@/lib/routes";
+import { sectionNavClick } from "@/lib/scroll";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { BRAND_NAME } from "@/lib/brand";
 
@@ -140,7 +141,10 @@ export default function Navbar() {
       >
         <a
           href={sectionPath("home")}
-          onClick={() => setIsOpen(false)}
+          onClick={(e) => {
+            sectionNavClick("home")(e);
+            setIsOpen(false);
+          }}
           className="inline-flex items-center gap-2.5"
         >
           <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-accent-purple/30 bg-bg ring-1 ring-accent-cyan/20">
@@ -156,6 +160,7 @@ export default function Navbar() {
             <li key={id}>
               <a
                 href={sectionPath(id)}
+                onClick={sectionNavClick(id)}
                 className={navLinkClass(activeSection === id)}
                 aria-current={activeSection === id ? "page" : undefined}
               >
@@ -206,7 +211,10 @@ export default function Navbar() {
                 <li key={id}>
                   <a
                     href={sectionPath(id)}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      sectionNavClick(id)(e);
+                      setIsOpen(false);
+                    }}
                     className={navLinkClass(activeSection === id, true)}
                     aria-current={activeSection === id ? "page" : undefined}
                   >
@@ -285,7 +293,10 @@ export default function Navbar() {
                 </a>
                 <a
                   href={sectionPath("contact")}
-                  onClick={closeHireModal}
+                  onClick={(e) => {
+                    sectionNavClick("contact")(e);
+                    closeHireModal();
+                  }}
                   className="btn-primary w-full"
                 >
                   Open Contact Form

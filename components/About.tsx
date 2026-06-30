@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { sectionPath } from "@/lib/routes";
+import { sectionNavClick } from "@/lib/scroll";
 
 const highlights = [
   "Modern, conversion-focused website design",
@@ -77,7 +79,8 @@ export default function About() {
               </StaggerContainer>
 
               <motion.a
-                href="/#contact"
+                href={sectionPath("contact")}
+                onClick={sectionNavClick("contact")}
                 className="btn-primary mt-4 inline-flex"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}

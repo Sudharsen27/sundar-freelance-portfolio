@@ -10,6 +10,7 @@ const skillCategories = [
     skills: [
       { name: "React", level: 92 },
       { name: "Next.js", level: 90 },
+      { name: "Astro", level: 88 },
       { name: "TypeScript", level: 85 },
       { name: "Tailwind CSS", level: 95 },
       { name: "Framer Motion", level: 88 },
@@ -38,7 +39,7 @@ const skillCategories = [
 ];
 
 const tools = [
-  "React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS",
+  "React", "Next.js", "Astro", "Node.js", "TypeScript", "Tailwind CSS",
   "PostgreSQL", "MongoDB", "Framer Motion", "Figma", "Vercel",
   "AWS", "Git", "REST APIs", "JWT", "Snowflake",
 ];

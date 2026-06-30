@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import FloatingOrbs from "@/components/ui/FloatingOrbs";
 import { PERSON_NAME, JOB_TITLE } from "@/lib/brand";
+import { sectionPath } from "@/lib/routes";
+import { sectionNavClick } from "@/lib/scroll";
 
 const trustPoints = [
   "8+ projects delivered",
@@ -69,19 +71,22 @@ export default function Hero() {
 
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <a
-                href="/#projects"
+                href={sectionPath("projects")}
+                onClick={sectionNavClick("projects")}
                 className="btn-primary w-full sm:w-auto"
               >
                 View Portfolio
               </a>
               <a
-                href="/#contact"
+                href={sectionPath("contact")}
+                onClick={sectionNavClick("contact")}
                 className="btn-outline w-full sm:w-auto"
               >
                 Hire Me
               </a>
               <a
-                href="/#contact"
+                href={sectionPath("contact")}
+                onClick={sectionNavClick("contact")}
                 className="btn-secondary w-full sm:w-auto"
               >
                 Let&apos;s Talk

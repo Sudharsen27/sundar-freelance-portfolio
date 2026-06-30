@@ -12,6 +12,7 @@ type Project = {
   liveHref: string;
   gradient: string;
   featured?: boolean;
+  status?: "live" | "in-development";
 };
 
 const projects: Project[] = [
@@ -36,13 +37,13 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Student Dashboard",
+    title: "Nexora CRM",
     description:
-      "Interactive dashboard to search, sort, add, edit, and analyze student marks with Snowflake backend.",
-    tech: ["Next.js", "Node.js", "Snowflake"],
-    result: "Centralized data analytics",
-    liveHref: "https://student-dashboard-snowflake-fronten.vercel.app/",
-    gradient: "from-indigo-900/80 via-card to-bg",
+      "Production-grade multi-tenant SaaS CRM with lead management, pipelines, role-based access, and analytics dashboards.",
+    tech: ["Next.js", "FastAPI", "PostgreSQL", "TypeScript", "JWT", "Python"],
+    result: "Multi-tenant SaaS CRM platform",
+    liveHref: "https://nexora-crm-iota.vercel.app",
+    gradient: "from-sky-900/80 via-card to-bg",
     featured: true,
   },
   {
@@ -62,6 +63,15 @@ const projects: Project[] = [
     result: "Secure role-based auth shipped",
     liveHref: "https://jobboardapplication.pages.dev/",
     gradient: "from-blue-900/80 via-card to-bg",
+  },
+  {
+    title: "Student Dashboard",
+    description:
+      "Interactive dashboard to search, sort, add, edit, and analyze student marks with Snowflake backend.",
+    tech: ["Next.js", "Node.js", "Snowflake"],
+    result: "Centralized data analytics",
+    liveHref: "https://student-dashboard-snowflake-fronten.vercel.app/",
+    gradient: "from-indigo-900/80 via-card to-bg",
   },
   {
     title: "School of Sustainability",
@@ -123,7 +133,10 @@ export default function Projects() {
         </SectionReveal>
 
         <StaggerContainer className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project) => {
+            const isLive = project.status !== "in-development";
+
+            return (
             <StaggerItem key={project.title}>
               <motion.article
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-card/60 shadow-card backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-accent-purple/30 hover:shadow-cardHover"
@@ -144,10 +157,17 @@ export default function Projects() {
                       Featured
                     </span>
                   ) : null}
-                  <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300 backdrop-blur-sm">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Live
-                  </span>
+                  {isLive ? (
+                    <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300 backdrop-blur-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Live
+                    </span>
+                  ) : (
+                    <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-amber-200 backdrop-blur-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      In Development
+                    </span>
+                  )}
                   <motion.div
                     className="absolute inset-0 flex items-center justify-center p-6"
                     initial={false}
@@ -184,17 +204,24 @@ export default function Projects() {
                       href={project.liveHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary flex w-full items-center justify-center gap-2 py-2.5 text-sm"
-                      aria-label={`Live demo: ${project.title}`}
+                      className={`flex w-full items-center justify-center gap-2 py-2.5 text-sm ${
+                        isLive ? "btn-primary" : "btn-secondary"
+                      }`}
+                      aria-label={
+                        isLive
+                          ? `Live demo: ${project.title}`
+                          : `Preview build: ${project.title}`
+                      }
                     >
-                      Live Demo
+                      {isLive ? "Live Demo" : "Preview Build"}
                       <ExternalIcon />
                     </a>
                   </div>
                 </div>
               </motion.article>
             </StaggerItem>
-          ))}
+            );
+          })}
         </StaggerContainer>
       </div>
     </section>

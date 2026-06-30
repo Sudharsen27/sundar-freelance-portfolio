@@ -1,58 +1,72 @@
 export type ServiceItem = {
   id: string;
-  icon: string;
   title: string;
   description: string;
   tags: string[];
+  features: string[];
+  ctaLabel: string;
+  featured?: boolean;
 };
 
 export const SERVICES: ServiceItem[] = [
   {
     id: "web-dev",
-    icon: "🌐",
     title: "Website Development",
     description:
-      "Custom websites built from scratch with modern tech stacks, optimized performance, and scalable architecture for long-term growth.",
-    tags: ["React", "Next.js", "Node.js"],
+      "Professional websites that are fast, SEO-friendly, responsive, and built to grow your business.",
+    tags: ["React", "Next.js", "Astro", "Tailwind CSS"],
+    features: ["SEO optimized", "Fast loading", "Mobile responsive", "Secure"],
+    ctaLabel: "Get Free Quote",
   },
   {
-    id: "responsive",
-    icon: "📱",
-    title: "Responsive Websites",
+    id: "web-app",
+    title: "Web Application Development",
     description:
-      "Pixel-perfect layouts that look stunning on every screen — mobile, tablet, and desktop — with smooth interactions throughout.",
-    tags: ["Mobile-first", "Tailwind CSS", "Accessibility"],
-  },
-  {
-    id: "portfolio",
-    icon: "✨",
-    title: "Portfolio Websites",
-    description:
-      "Stand-out personal and creative portfolios designed to showcase your work beautifully and attract the right opportunities.",
-    tags: ["Personal Brand", "Animations", "SEO"],
-  },
-  {
-    id: "landing",
-    icon: "🚀",
-    title: "Landing Pages",
-    description:
-      "High-converting landing pages crafted to capture attention, communicate value fast, and turn visitors into leads or customers.",
-    tags: ["Conversion", "A/B Ready", "Fast Load"],
-  },
-  {
-    id: "uiux",
-    icon: "🎨",
-    title: "UI/UX Design",
-    description:
-      "Clean, intuitive interfaces with thoughtful user flows — blending aesthetics with usability for memorable digital experiences.",
-    tags: ["Figma", "Wireframes", "Prototypes"],
+      "Custom web applications — admin dashboards, booking systems, SaaS products, CRMs, portals, and business management software.",
+    tags: ["React", "Node.js", "Python", "Express", "PostgreSQL", "MongoDB"],
+    features: ["Authentication", "Dashboard", "API integration", "Database design"],
+    ctaLabel: "Start Your Project",
+    featured: true,
   },
   {
     id: "business",
-    icon: "💼",
-    title: "Business Websites",
+    title: "Business Website Development",
     description:
-      "Professional business websites that establish credibility, communicate your services clearly, and generate real inquiries.",
-    tags: ["Corporate", "CMS Ready", "Analytics"],
+      "Professional business websites designed to build credibility, showcase services, and generate leads.",
+    tags: ["Next.js", "Astro", "Tailwind CSS"],
+    features: ["Lead generation", "SEO ready", "Contact forms", "Analytics"],
+    ctaLabel: "Build My Website",
+  },
+  {
+    id: "responsive",
+    title: "Responsive Website Development",
+    description:
+      "Mobile-first websites that work flawlessly across desktops, tablets, and smartphones.",
+    tags: ["HTML", "CSS", "Tailwind", "React", "Astro"],
+    features: ["Mobile first", "Cross-browser", "Accessibility", "Performance"],
+    ctaLabel: "Let's Build",
+  },
+  {
+    id: "landing",
+    title: "Landing Page Development",
+    description:
+      "High-converting landing pages optimized for marketing campaigns and product launches.",
+    tags: ["React", "Next.js", "Astro"],
+    features: ["Fast loading", "Conversion focused", "Responsive", "SEO friendly"],
+    ctaLabel: "Launch My Landing Page",
+  },
+  {
+    id: "portfolio",
+    title: "Portfolio Website Development",
+    description:
+      "Modern portfolio websites for developers, designers, freelancers, and businesses to showcase work professionally.",
+    tags: ["Next.js", "React", "Astro", "Tailwind"],
+    features: [
+      "Personal branding",
+      "Project showcase",
+      "Contact form",
+      "Modern animations",
+    ],
+    ctaLabel: "Create My Portfolio",
   },
 ];

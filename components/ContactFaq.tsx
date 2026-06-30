@@ -11,7 +11,7 @@ export default function ContactFaq() {
 
   return (
     <SectionReveal delay={0.12}>
-      <div id="faq" className="mx-auto mt-16 max-w-3xl sm:mt-20" aria-labelledby="contact-faq-heading">
+      <div id="faq" className="mx-auto mt-16 max-w-3xl scroll-mt-28 sm:mt-20" aria-labelledby="contact-faq-heading">
         <div className="mb-8 text-center sm:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-cyan">
             FAQ
