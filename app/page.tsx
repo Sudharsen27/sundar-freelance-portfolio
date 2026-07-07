@@ -10,13 +10,12 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import JsonLd from "@/components/JsonLd";
 import { getSiteUrl } from "@/lib/site";
+import { getLinkedInUrl } from "@/lib/social";
 import { buildStructuredDataGraph } from "@/lib/structured-data";
 
 export default function Home() {
   const siteUrl = getSiteUrl();
-  const linkedInUrl =
-    process.env.NEXT_PUBLIC_LINKEDIN_URL ||
-    "https://www.linkedin.com/in/sundar-lingam";
+  const linkedInUrl = getLinkedInUrl();
 
   const structuredData = buildStructuredDataGraph({ siteUrl, linkedInUrl });
 

@@ -1,8 +1,8 @@
 import { whatsappUrl } from "@/lib/whatsapp";
 import { BRAND_NAME, JOB_TITLE, PERSON_NAME } from "@/lib/brand";
-const linkedInUrl =
-  process.env.NEXT_PUBLIC_LINKEDIN_URL ||
-  "https://www.linkedin.com/in/sundar-lingam";
+import { getLinkedInUrl } from "@/lib/social";
+
+const linkedInUrl = getLinkedInUrl();
 
 const socialLinks = [
   {
