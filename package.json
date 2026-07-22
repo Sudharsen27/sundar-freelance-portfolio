@@ -16,8 +16,7 @@
     "next": "latest",
     "nodemailer": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "react-ga4": "^3.0.1"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",
