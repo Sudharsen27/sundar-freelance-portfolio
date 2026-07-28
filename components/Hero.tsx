@@ -8,7 +8,7 @@ import { sectionPath } from "@/lib/routes";
 import { sectionNavClick } from "@/lib/scroll";
 
 const trustPoints = [
-  "8+ projects delivered",
+  "11 projects delivered",
   "Fast turnaround",
   "Premium quality",
 ];

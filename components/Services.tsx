@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import AwsServices from "@/components/home/AwsServices";
 import { SERVICES } from "@/lib/services-data";
 import { sectionPath } from "@/lib/routes";
 import { sectionNavClick } from "@/lib/scroll";
@@ -158,6 +159,8 @@ export default function Services() {
           })}
         </StaggerContainer>
 
+        <AwsServices />
+
         <SectionReveal delay={0.2}>
           <div className="mt-16 rounded-2xl border border-accent-purple/20 bg-gradient-to-r from-accent-purple/10 via-card/80 to-accent-cyan/10 p-8 text-center backdrop-blur-xl sm:p-10">
             <h3 className="font-display text-2xl font-bold text-text-primary sm:text-3xl">
@@ -176,6 +179,7 @@ export default function Services() {
             </a>
           </div>
         </SectionReveal>
+
       </div>
     </section>
   );

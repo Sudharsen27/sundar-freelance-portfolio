@@ -16,7 +16,7 @@ const highlights = [
 
 const stats = [
   { label: "Response time", value: "24 hrs", desc: "Quick replies & clear next steps" },
-  { label: "Projects shipped", value: "8+", desc: "Live products for real clients" },
+  { label: "Projects shipped", value: "11", desc: "Live products for real clients" },
   { label: "Client focus", value: "100%", desc: "Business outcomes over just code" },
 ];
 

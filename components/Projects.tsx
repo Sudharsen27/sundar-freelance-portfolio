@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import SectionReveal, { StaggerContainer, StaggerItem } from "@/components/ui/SectionReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -9,13 +10,26 @@ type Project = {
   description: string;
   tech: string[];
   result: string;
-  liveHref: string;
+  liveHref?: string;
+  caseStudyHref?: string;
   gradient: string;
   featured?: boolean;
-  status?: "live" | "in-development";
+  status?: "live" | "in-development" | "enterprise";
 };
 
 const projects: Project[] = [
+  {
+    title: "Restaurant ERP Platform",
+    description:
+      "Enterprise restaurant ERP on AWS — multi-location operations, inventory, procurement, executive dashboards, and cloud-native deployment with ECS, RDS, and ElastiCache.",
+    tech: ["React", "FastAPI", "Amazon ECS", "Amazon RDS", "AWS CDK"],
+    result: "Enterprise AWS cloud architecture",
+    caseStudyHref: "/projects/restaurant-erp",
+    liveHref: "https://restaurant-resource-planning-system.vercel.app/",
+    gradient: "from-[#FF9900]/30 via-card to-bg",
+    featured: true,
+    status: "enterprise",
+  },
   {
     title: "MDM Data Governance Platform",
     description:
@@ -119,6 +133,14 @@ function ExternalIcon() {
   );
 }
 
+function ArrowIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+      <path d="M5 12h14M13 5l7 7-7 7" />
+    </svg>
+  );
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="scroll-mt-28 py-20 sm:py-28" aria-labelledby="projects-heading">
@@ -127,37 +149,59 @@ export default function Projects() {
           <SectionHeader
             badge="Featured Work"
             title="Projects That Speak Results"
-            subtitle="Live products built for real clients — premium design, solid engineering, and measurable business impact."
+            subtitle="Live products and enterprise platforms built for real clients — premium design, solid engineering, and measurable business impact."
             headingId="projects-heading"
           />
         </SectionReveal>
 
         <StaggerContainer className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => {
-            const isLive = project.status !== "in-development";
+            const isEnterprise = project.status === "enterprise";
+            const isLive = project.status !== "in-development" && !isEnterprise;
+            const href = project.caseStudyHref || project.liveHref || "#";
+            const isInternal = Boolean(project.caseStudyHref);
 
             return (
             <StaggerItem key={project.title}>
               <motion.article
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-card/60 shadow-card backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-accent-purple/30 hover:shadow-cardHover"
+                className={`group flex h-full flex-col overflow-hidden rounded-2xl border bg-card/60 shadow-card backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-cardHover ${
+                  isEnterprise
+                    ? "border-[#FF9900]/25 hover:border-[#FF9900]/45"
+                    : "border-white/[0.08] hover:border-accent-purple/30"
+                }`}
                 whileHover={{ scale: 1.01 }}
               >
                 <div className={`relative aspect-video overflow-hidden bg-gradient-to-br ${project.gradient}`}>
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(139,92,246,0.2),transparent_60%)]" />
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(6,182,212,0.15),transparent_60%)]" />
+                  {isEnterprise ? (
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,153,0,0.18),transparent_65%)]" />
+                  ) : null}
                   <motion.div
                     className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     style={{
-                      background:
-                        "linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(6,182,212,0.1) 100%)",
+                      background: isEnterprise
+                        ? "linear-gradient(135deg, rgba(255,153,0,0.12) 0%, rgba(6,182,212,0.08) 100%)"
+                        : "linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(6,182,212,0.1) 100%)",
                     }}
                   />
                   {project.featured ? (
-                    <span className="absolute left-4 top-4 rounded-full border border-accent-purple/40 bg-accent-purple/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-purple backdrop-blur-sm">
+                    <span
+                      className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm ${
+                        isEnterprise
+                          ? "border-[#FF9900]/40 bg-[#FF9900]/20 text-[#FFB84D]"
+                          : "border-accent-purple/40 bg-accent-purple/20 text-accent-purple"
+                      }`}
+                    >
                       Featured
                     </span>
                   ) : null}
-                  {isLive ? (
+                  {isEnterprise ? (
+                    <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-[#FF9900]/35 bg-[#FF9900]/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#FFB84D] backdrop-blur-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#FF9900] animate-pulse" />
+                      Enterprise
+                    </span>
+                  ) : isLive ? (
                     <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300 backdrop-blur-sm">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       Live
@@ -186,7 +230,13 @@ export default function Projects() {
                   <p className="flex-1 text-sm leading-relaxed text-text-secondary">
                     {project.description}
                   </p>
-                  <span className="inline-flex w-fit rounded-full border border-accent-cyan/25 bg-accent-cyan/10 px-3 py-1 text-xs font-medium text-accent-cyan">
+                  <span
+                    className={`inline-flex w-fit rounded-full border px-3 py-1 text-xs font-medium ${
+                      isEnterprise
+                        ? "border-[#FF9900]/30 bg-[#FF9900]/10 text-[#FFB84D]"
+                        : "border-accent-cyan/25 bg-accent-cyan/10 text-accent-cyan"
+                    }`}
+                  >
                     {project.result}
                   </span>
                   <div className="flex flex-wrap gap-1.5">
@@ -199,23 +249,55 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-auto pt-2">
-                    <a
-                      href={project.liveHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex w-full items-center justify-center gap-2 py-2.5 text-sm ${
-                        isLive ? "btn-primary" : "btn-secondary"
-                      }`}
-                      aria-label={
-                        isLive
-                          ? `Live demo: ${project.title}`
-                          : `Preview build: ${project.title}`
-                      }
-                    >
-                      {isLive ? "Live Demo" : "Preview Build"}
-                      <ExternalIcon />
-                    </a>
+                  <div className="mt-auto flex flex-col gap-2 pt-2">
+                    {project.caseStudyHref && project.liveHref ? (
+                      <>
+                        <a
+                          href={project.liveHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary flex w-full items-center justify-center gap-2 py-2.5 text-sm"
+                          aria-label={`Live demo: ${project.title}`}
+                        >
+                          Live Demo
+                          <ExternalIcon />
+                        </a>
+                        <Link
+                          href={project.caseStudyHref}
+                          className="btn-secondary flex w-full items-center justify-center gap-2 py-2.5 text-sm"
+                          aria-label={`View case study: ${project.title}`}
+                        >
+                          View Case Study
+                          <ArrowIcon />
+                        </Link>
+                      </>
+                    ) : isInternal ? (
+                      <Link
+                        href={href}
+                        className="btn-primary flex w-full items-center justify-center gap-2 py-2.5 text-sm"
+                        aria-label={`View case study: ${project.title}`}
+                      >
+                        View Case Study
+                        <ArrowIcon />
+                      </Link>
+                    ) : (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex w-full items-center justify-center gap-2 py-2.5 text-sm ${
+                          isLive ? "btn-primary" : "btn-secondary"
+                        }`}
+                        aria-label={
+                          isLive
+                            ? `Live demo: ${project.title}`
+                            : `Preview build: ${project.title}`
+                        }
+                      >
+                        {isLive ? "Live Demo" : "Preview Build"}
+                        <ExternalIcon />
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.article>
