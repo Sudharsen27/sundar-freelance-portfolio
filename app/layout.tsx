@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
 import GaRouteTracker from "@/components/GaRouteTracker";
 import ScrollToHash from "@/components/ScrollToHash";
 import VisitNotifier from "@/components/VisitNotifier";
@@ -87,6 +88,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="min-h-screen bg-bg font-sans antialiased">
         <GoogleAnalytics />
+        <MicrosoftClarity />
         <GaRouteTracker />
         <ScrollToHash />
         {children}
