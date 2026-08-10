@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import {
   ArrowRight,
+  Bot,
   Briefcase,
   Check,
+  Cloud,
   Code2,
   Globe,
   LayoutGrid,
@@ -26,6 +28,8 @@ const SERVICE_ICONS: Record<string, LucideIcon> = {
   responsive: Smartphone,
   landing: Rocket,
   portfolio: LayoutGrid,
+  saas: Cloud,
+  "ai-agents": Bot,
 };
 
 export default function Services() {

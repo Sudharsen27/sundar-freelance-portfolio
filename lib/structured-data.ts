@@ -46,6 +46,9 @@ export function buildStructuredDataGraph({
         knowsAbout: [
           "Website Development",
           "Full Stack Development",
+          "Web Application Development",
+          "SaaS Products",
+          "AI Agents & Automation",
           "UI/UX Design",
           "React",
           "Next.js",

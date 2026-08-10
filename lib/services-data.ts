@@ -69,4 +69,32 @@ export const SERVICES: ServiceItem[] = [
     ],
     ctaLabel: "Create My Portfolio",
   },
+  {
+    id: "saas",
+    title: "SaaS Products",
+    description:
+      "Multi-tenant SaaS platforms with authentication, billing-ready architecture, dashboards, and scalable APIs for growing products.",
+    tags: ["Next.js", "Node.js", "PostgreSQL", "TypeScript"],
+    features: [
+      "Multi-tenant architecture",
+      "Auth & roles",
+      "Admin dashboards",
+      "API-first design",
+    ],
+    ctaLabel: "Build My SaaS",
+  },
+  {
+    id: "ai-agents",
+    title: "AI Agents & Automation",
+    description:
+      "Custom AI agents and workflow automation that handle repetitive tasks, customer support flows, and business operations.",
+    tags: ["AI", "Automation", "APIs", "Python"],
+    features: [
+      "Custom agents",
+      "Workflow automation",
+      "API integrations",
+      "Business process savings",
+    ],
+    ctaLabel: "Automate With AI",
+  },
 ];

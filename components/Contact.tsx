@@ -39,6 +39,10 @@ function buildWhatsAppLink(form: FormState) {
 
 const SERVICE_OPTIONS = [
   { value: "Website Development", label: "Website Development" },
+  { value: "Web Application Development", label: "Web Application Development" },
+  { value: "SaaS Products", label: "SaaS Products" },
+  { value: "AI Agents & Automation", label: "AI Agents & Automation" },
+  { value: "AWS Cloud & DevOps", label: "AWS Cloud & DevOps" },
   { value: "Responsive Websites", label: "Responsive Websites" },
   { value: "Portfolio Websites", label: "Portfolio Websites" },
   { value: "Landing Pages", label: "Landing Pages" },
