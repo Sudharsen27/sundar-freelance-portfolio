@@ -5,7 +5,6 @@ import { Bot, X } from "lucide-react";
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
 import SuggestedQuestions from "./SuggestedQuestions";
-import { getMockResponse } from "./mockResponses";
 import type { Message } from "./types";
 
 interface ChatWindowProps {
@@ -42,28 +41,64 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
     });
   }, [messages, isTyping]);
 
-  const sendMessage = (content: string) => {
+  const sendMessage = async (content: string) => {
+    const trimmedContent = content.trim();
+
+    if (!trimmedContent || isTyping) {
+      return;
+    }
+
     const userMessage: Message = {
       id: `${Date.now()}-user`,
       role: "user",
-      content,
+      content: trimmedContent,
     };
 
     setMessages((current) => [...current, userMessage]);
     setIsTyping(true);
 
-    window.setTimeout(() => {
-      const response = getMockResponse(content);
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: trimmedContent,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error || "Unable to get a response from the AI assistant."
+        );
+      }
 
       const assistantMessage: Message = {
         id: `${Date.now()}-assistant`,
         role: "assistant",
-        content: response,
+        content:
+          data?.message ||
+          "Sorry, I couldn't generate a response right now. Please try again.",
       };
 
       setMessages((current) => [...current, assistantMessage]);
+    } catch (error) {
+      console.error("Chat request error:", error);
+
+      const errorMessage: Message = {
+        id: `${Date.now()}-assistant-error`,
+        role: "assistant",
+        content:
+          "Sorry, I'm having trouble responding right now. Please try again in a moment.",
+      };
+
+      setMessages((current) => [...current, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 650);
+    }
   };
 
   return (
