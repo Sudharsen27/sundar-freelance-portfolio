@@ -1,6 +1,7 @@
 import Groq from "groq-sdk";
 import { NextResponse } from "next/server";
 import { COMPANY_CONTEXT } from "@/lib/company-context";
+import { chatRateLimit } from "@/lib/rate-limit";
 
 const apiKey = process.env.GROQ_API_KEY;
 
@@ -54,6 +55,44 @@ export async function POST(request: Request) {
         },
         { status: 413 }
       );
+    }
+
+    // Get visitor IP address
+    const forwardedFor = request.headers.get("x-forwarded-for");
+
+    const visitorIp =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    // Apply Upstash rate limiting
+    if (chatRateLimit) {
+      const { success, limit, remaining, reset } =
+        await chatRateLimit.limit(visitorIp);
+
+      // Rate limit exceeded
+      if (!success) {
+        const retryAfterSeconds = Math.max(
+          1,
+          Math.ceil((reset - Date.now()) / 1000)
+        );
+
+        return NextResponse.json(
+          {
+            error:
+              "You've reached the chat usage limit. Please try again in a minute.",
+          },
+          {
+            status: 429,
+            headers: {
+              "X-RateLimit-Limit": String(limit),
+              "X-RateLimit-Remaining": String(remaining),
+              "X-RateLimit-Reset": String(reset),
+              "Retry-After": String(retryAfterSeconds),
+            },
+          }
+        );
+      }
     }
 
     // Create Groq client
@@ -126,7 +165,7 @@ Respond naturally as a professional business assistant for Sundar Digital.
         ? (error as { status: number }).status
         : 500;
 
-    // Handle Groq rate-limit / quota errors
+    // Handle Groq / Upstash rate-limit errors
     if (status === 429) {
       return NextResponse.json(
         {
