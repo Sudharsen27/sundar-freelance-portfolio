@@ -4,6 +4,8 @@ import { COMPANY_CONTEXT } from "@/lib/company-context";
 
 const apiKey = process.env.GROQ_API_KEY;
 
+const MAX_MESSAGE_LENGTH = 2000;
+
 export async function POST(request: Request) {
   try {
     // Check Groq API key
@@ -20,13 +22,37 @@ export async function POST(request: Request) {
     const body = await request.json();
     const message = body?.message;
 
-    // Validate message
+    // Validate message type
     if (!message || typeof message !== "string") {
       return NextResponse.json(
         {
           error: "Message is required.",
         },
         { status: 400 }
+      );
+    }
+
+    // Clean the message
+    const trimmedMessage = message.trim();
+
+    // Prevent empty messages
+    if (trimmedMessage.length === 0) {
+      return NextResponse.json(
+        {
+          error: "Message cannot be empty.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // Prevent excessively large messages
+    if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        {
+          error:
+            "Message is too long. Please keep your message under 2,000 characters.",
+        },
+        { status: 413 }
       );
     }
 
@@ -74,7 +100,7 @@ Respond naturally as a professional business assistant for Sundar Digital.
         },
         {
           role: "user",
-          content: message,
+          content: trimmedMessage,
         },
       ],
       temperature: 0.4,
@@ -91,6 +117,7 @@ Respond naturally as a professional business assistant for Sundar Digital.
   } catch (error) {
     console.error("Groq chat error:", error);
 
+    // Get API error status when available
     const status =
       typeof error === "object" &&
       error !== null &&
@@ -99,7 +126,7 @@ Respond naturally as a professional business assistant for Sundar Digital.
         ? (error as { status: number }).status
         : 500;
 
-    // Handle rate-limit / quota errors
+    // Handle Groq rate-limit / quota errors
     if (status === 429) {
       return NextResponse.json(
         {
@@ -110,6 +137,7 @@ Respond naturally as a professional business assistant for Sundar Digital.
       );
     }
 
+    // Handle other errors
     return NextResponse.json(
       {
         error:
