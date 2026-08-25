@@ -7,8 +7,26 @@ const apiKey = process.env.GROQ_API_KEY;
 
 const MAX_MESSAGE_LENGTH = 2000;
 
+const ALLOWED_ORIGINS = [
+  "https://www.sundardigital.in",
+  "https://sundardigital.in",
+  "http://localhost:3000",
+];
+
 export async function POST(request: Request) {
   try {
+    // Check request origin
+    const origin = request.headers.get("origin");
+
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      return NextResponse.json(
+        {
+          error: "This request is not allowed.",
+        },
+        { status: 403 }
+      );
+    }
+
     // Check Groq API key
     if (!apiKey) {
       return NextResponse.json(
