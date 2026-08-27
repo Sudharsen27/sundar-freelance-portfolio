@@ -12,12 +12,14 @@ import {
 export type AdminNotificationData = {
   name: string;
   email: string;
+  phone?: string;
   company?: string;
   service: string;
   budget: string;
   timeline: string;
   referral: string;
   description: string;
+  leadIntent?: string;
 };
 
 export const ADMIN_NOTIFICATION_SUBJECT = "🔥 New Portfolio Lead Received";
@@ -26,13 +28,15 @@ export function buildAdminNotificationHtml(data: AdminNotificationData): string 
   const clientRows =
     summaryRow("Name", data.name) +
     summaryRow("Email", data.email) +
+    (data.phone?.trim() ? summaryRow("Phone / WhatsApp", data.phone.trim()) : "") +
     (data.company?.trim() ? summaryRow("Company", data.company.trim()) : "");
 
   const projectRows =
     summaryRow("Service", data.service) +
     summaryRow("Budget", data.budget) +
     summaryRow("Timeline", data.timeline) +
-    summaryRow("Lead Source", data.referral);
+    summaryRow("Lead Source", data.referral) +
+    (data.leadIntent ? summaryRow("Lead Intent", data.leadIntent) : "");
 
   const safeDescription = escapeHtml(data.description).replace(/\n/g, "<br />");
 
@@ -55,7 +59,7 @@ export function buildAdminNotificationHtml(data: AdminNotificationData): string 
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0;background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
           <tr>
             <td style="padding:16px 20px;background-color:#ffffff;border-bottom:1px solid #e2e8f0;">
-              <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${BRAND.primary};">Project Description</p>
+              <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${BRAND.primary};">Project Requirements</p>
             </td>
           </tr>
           <tr>
@@ -86,21 +90,22 @@ export function buildAdminNotificationHtml(data: AdminNotificationData): string 
 }
 
 export function buildAdminNotificationText(data: AdminNotificationData): string {
-  const companyLine = data.company?.trim() ? `Company: ${data.company.trim()}\n` : "";
+  const phoneLineCompany = data.company?.trim() ? `Company: ${data.company.trim()}\n` : "";
+  const phoneLine = data.phone?.trim() ? `Phone / WhatsApp: ${data.phone.trim()}\n` : "";
+  const leadIntentLine = data.leadIntent ? `\nLead Intent: ${data.leadIntent}` : "";
 
   return `NEW PROJECT LEAD
 
 CLIENT INFORMATION
 Name: ${data.name}
 Email: ${data.email}
-${companyLine}
-PROJECT INFORMATION
+${phoneLine}${phoneLineCompany}PROJECT INFORMATION
 Service: ${data.service}
 Budget: ${data.budget}
 Timeline: ${data.timeline}
-Lead Source: ${data.referral}
+Lead Source: ${data.referral}${leadIntentLine}
 
-PROJECT DESCRIPTION
+PROJECT REQUIREMENTS
 ${data.description}
 
 —
