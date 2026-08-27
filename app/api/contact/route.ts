@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { createSmtpTransporter, getSmtpConfig } from "@/lib/smtp";
+import { contactRateLimit } from "@/lib/rate-limit";
 
 import {
   ADMIN_NOTIFICATION_SUBJECT,
@@ -40,6 +41,44 @@ const SMTP_NOT_CONFIGURED_MESSAGE =
 
 export async function POST(request: Request) {
   try {
+    // Get visitor IP address
+    const forwardedFor = request.headers.get("x-forwarded-for");
+
+    const visitorIp =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    // Apply contact rate limiting
+    if (contactRateLimit) {
+      const { success, limit, remaining, reset } =
+        await contactRateLimit.limit(visitorIp);
+
+      if (!success) {
+        const retryAfterSeconds = Math.max(
+          1,
+          Math.ceil((reset - Date.now()) / 1000)
+        );
+
+        return NextResponse.json(
+          {
+            success: false,
+            message:
+              "You've submitted too many enquiries. Please try again later.",
+          },
+          {
+            status: 429,
+            headers: {
+              "X-RateLimit-Limit": String(limit),
+              "X-RateLimit-Remaining": String(remaining),
+              "X-RateLimit-Reset": String(reset),
+              "Retry-After": String(retryAfterSeconds),
+            },
+          }
+        );
+      }
+    }
+
     const body = (await request.json()) as ContactPayload;
 
     const {
@@ -64,7 +103,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate required fields. Phone remains optional for the existing contact form.
+    // Validate required fields.
+    // Phone remains optional for the existing contact form.
     if (
       !name.trim() ||
       !email.trim() ||
@@ -114,23 +154,23 @@ export async function POST(request: Request) {
     const transporter = createSmtpTransporter(smtp);
 
     const emailData = {
-      name,
-      email,
-      phone,
-      company,
-      service,
-      budget,
-      timeline,
-      referral,
-      description,
-      leadIntent,
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      company: company.trim(),
+      service: service.trim(),
+      budget: budget.trim(),
+      timeline: timeline.trim(),
+      referral: referral.trim(),
+      description: description.trim(),
+      leadIntent: leadIntent.trim(),
     };
 
     // Send notification to Sundar Digital
     await transporter.sendMail({
       from: `${BRAND.name} <${smtp.from}>`,
       to: smtp.to,
-      replyTo: email.trim(),
+      replyTo: emailData.email,
       subject: ADMIN_NOTIFICATION_SUBJECT,
       text: buildAdminNotificationText(emailData),
       html: buildAdminNotificationHtml(emailData),
@@ -139,7 +179,7 @@ export async function POST(request: Request) {
     // Send confirmation to client
     await transporter.sendMail({
       from: `${BRAND.name} <${smtp.from}>`,
-      to: email.trim(),
+      to: emailData.email,
       subject: CLIENT_CONFIRMATION_SUBJECT,
       text: buildClientConfirmationText(emailData),
       html: buildClientConfirmationHtml(emailData),
@@ -153,10 +193,7 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (err: unknown) {
-    console.error(
-      "[contact] Failed to send email:",
-      err
-    );
+    console.error("[contact] Failed to send email:", err);
 
     const message =
       err instanceof Error &&
