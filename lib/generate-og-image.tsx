@@ -22,11 +22,14 @@ async function loadGoogleFont(family: string, weight: number) {
   const match = css.match(
     /src:\s*url\(([^)]+)\)\s*format\(['"](?:opentype|truetype)['"]\)/
   );
+
   if (!match?.[1]) {
     throw new Error(`Failed to load font: ${family} ${weight}`);
   }
 
-  return fetch(match[1].replace(/['"]/g, "")).then((res) => res.arrayBuffer());
+  return fetch(match[1].replace(/['"]/g, "")).then((res) =>
+    res.arrayBuffer()
+  );
 }
 
 export async function generateOgImage() {
@@ -63,6 +66,7 @@ export async function generateOgImage() {
               "radial-gradient(circle, rgba(139,92,246,0.45) 0%, transparent 70%)",
           }}
         />
+
         {/* Cyan glow — bottom right */}
         <div
           style={{
@@ -76,6 +80,7 @@ export async function generateOgImage() {
               "radial-gradient(circle, rgba(6,182,212,0.35) 0%, transparent 70%)",
           }}
         />
+
         {/* Subtle grid */}
         <div
           style={{
@@ -86,6 +91,7 @@ export async function generateOgImage() {
             backgroundSize: "64px 64px",
           }}
         />
+
         {/* Top accent line */}
         <div
           style={{
@@ -94,7 +100,8 @@ export async function generateOgImage() {
             left: 0,
             right: 0,
             height: 4,
-            background: "linear-gradient(90deg, #8B5CF6, #06B6D4, #8B5CF6)",
+            background:
+              "linear-gradient(90deg, #8B5CF6, #06B6D4, #8B5CF6)",
           }}
         />
 
@@ -135,6 +142,7 @@ export async function generateOgImage() {
                   background: "#06B6D4",
                 }}
               />
+
               <span
                 style={{
                   fontFamily: "Inter",
@@ -175,7 +183,8 @@ export async function generateOgImage() {
                 width: 80,
                 height: 4,
                 borderRadius: 4,
-                background: "linear-gradient(90deg, #8B5CF6, #06B6D4)",
+                background:
+                  "linear-gradient(90deg, #8B5CF6, #06B6D4)",
                 marginBottom: 20,
               }}
             />
@@ -224,20 +233,14 @@ export async function generateOgImage() {
                   borderRadius: 10,
                   border: "1px solid rgba(6,182,212,0.35)",
                   background: "rgba(6,182,212,0.12)",
+                  fontFamily: "Inter",
+                  fontSize: 18,
+                  color: "#06B6D4",
                 }}
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#06B6D4"
-                  strokeWidth="2"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
+                Web
               </div>
+
               <span
                 style={{
                   fontFamily: "Inter",
@@ -272,12 +275,14 @@ export async function generateOgImage() {
                   "radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%)",
               }}
             />
+
             <div
               style={{
                 display: "flex",
                 padding: 5,
                 borderRadius: 28,
-                background: "linear-gradient(135deg, #8B5CF6, #06B6D4)",
+                background:
+                  "linear-gradient(135deg, #8B5CF6, #06B6D4)",
                 boxShadow: "0 0 60px rgba(139,92,246,0.4)",
               }}
             >
