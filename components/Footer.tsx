@@ -16,7 +16,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: linkedInUrl,
+    href: "https://www.linkedin.com/company/sundardigital/",
     icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
         <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM.5 8h4V23h-4V8Zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.13V23h-4v-6.4c0-1.53-.03-3.5-2.13-3.5-2.13 0-2.46 1.66-2.46 3.38V23h-4V8Z" />

@@ -25,7 +25,11 @@ export function buildStructuredDataGraph({
     professionalService: `${siteUrl}/#professional-service`,
   };
 
-  const sameAs = ["https://github.com/Sudharsen27", linkedInUrl];
+  const personSameAs = ["https://github.com/Sudharsen27", linkedInUrl];
+  const organizationSameAs = [
+    "https://github.com/Sudharsen27",
+    "https://www.linkedin.com/company/sundardigital/",
+  ];
   const heroImage = `${siteUrl}/sundar-hero.png`;
   const logoImage = `${siteUrl}/brand-logo.svg`;
 
@@ -41,7 +45,7 @@ export function buildStructuredDataGraph({
         jobTitle: JOB_TITLE,
         email: CONTACT_EMAIL,
         telephone: CONTACT_PHONE,
-        sameAs,
+        sameAs: personSameAs,
         worksFor: { "@id": ids.organization },
         knowsAbout: [
           "Website Development",
@@ -81,7 +85,7 @@ export function buildStructuredDataGraph({
             areaServed: "Worldwide",
           },
         ],
-        sameAs,
+        sameAs: organizationSameAs,
       },
       {
         "@type": "WebSite",
