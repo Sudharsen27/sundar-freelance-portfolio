@@ -53,7 +53,7 @@ export default function Hero() {
               className="font-display text-[1.75rem] font-bold leading-[1.22] tracking-tight text-pretty text-text-primary sm:text-4xl sm:leading-[1.12] lg:text-[3.25rem] lg:leading-[1.1]"
             >
               <span className="block sm:inline">
-                Full Stack Developer Building
+                Software Engineer Building
               </span>{" "}
               <span className="block sm:inline">
                 Modern{" "}

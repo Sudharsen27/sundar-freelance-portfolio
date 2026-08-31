@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   keywords: [
     "Sundar Digital",
     "Sundar Lingam",
-    "full stack developer",
+    "software engineer",
     "web development",
     "website development",
     "custom software development",
