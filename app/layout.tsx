@@ -41,11 +41,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: PAGE_TITLE,
+    default: "Sundar Digital | Software, AI & Digital Solutions",
     template: `%s | ${PERSON_NAME}`,
   },
 
-  description: SITE_DESCRIPTION,
+  description:
+    "Sundar Digital builds modern software, AI solutions, web applications, SaaS products, and digital solutions for businesses, startups, and creators.",
 
   keywords: [
     "Sundar Digital",
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "/",
+    canonical: "https://www.sundardigital.in/",
   },
 
   category: "technology",
@@ -96,7 +97,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: `${PERSON_NAME} | ${JOB_TITLE} | ${BRAND_NAME}`,
+    title: "Sundar Digital | Software, AI & Digital Solutions",
 
     description:
       "Sundar Digital builds modern websites, custom web applications, SaaS products, AI solutions, CRM systems, ERP solutions, and AWS-powered software for businesses and startups.",
@@ -110,7 +111,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: `${PERSON_NAME} | ${JOB_TITLE} | ${BRAND_NAME}`,
+    title: "Sundar Digital | Software, AI & Digital Solutions",
 
     description:
       "Modern websites, custom software, SaaS products, AI solutions, CRM, ERP, AWS, and DevOps services from Sundar Digital.",

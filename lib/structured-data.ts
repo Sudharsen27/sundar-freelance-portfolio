@@ -79,7 +79,6 @@ export function buildStructuredDataGraph({
             telephone: CONTACT_PHONE,
             availableLanguage: ["English"],
             areaServed: "Worldwide",
-            url: `${siteUrl}/contact`,
           },
         ],
         sameAs,
