@@ -64,10 +64,9 @@ export default function Hero() {
             </h1>
 
             <p className="max-w-xl text-lg leading-relaxed text-text-secondary">
-              I build modern websites, custom web applications, SaaS products,
-              and AI-powered solutions for businesses, startups, and creators.
-              Based in Chennai, I help turn ideas into fast, scalable, and
-              production-ready digital products.
+              Sundar Digital helps businesses, startups, and creators build
+              modern software, AI solutions, web applications, and digital
+              products that scale with their goals.
             </p>
 
             <div className="flex flex-wrap gap-3">
