@@ -83,13 +83,14 @@ function shouldSendForPath(pathname: string): boolean {
   return true;
 }
 
-export default function VisitNotifier() {
+export default function VisitNotifier({ analyticsEnabled = false }: { analyticsEnabled?: boolean }) {
   const pathname = usePathname() || "/";
   const enabledRef = useRef(
     process.env.NEXT_PUBLIC_ENABLE_VISIT_NOTIFICATIONS === "true"
   );
 
   useEffect(() => {
+    if (!analyticsEnabled) return;
     if (!enabledRef.current) return;
     if (typeof window === "undefined") return;
     if (!shouldSendForPath(pathname)) return;
@@ -127,7 +128,7 @@ export default function VisitNotifier() {
     }).catch(() => {
       /* silent */
     });
-  }, [pathname]);
+  }, [analyticsEnabled, pathname]);
 
   return null;
 }

@@ -1,13 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 
-import GoogleAnalytics from "@/components/GoogleAnalytics";
-import MicrosoftClarity from "@/components/MicrosoftClarity";
-import GaRouteTracker from "@/components/GaRouteTracker";
 import ScrollToHash from "@/components/ScrollToHash";
-import VisitNotifier from "@/components/VisitNotifier";
 import ChatWidget from "@/components/AIChatbot/ChatWidget";
+import CookieConsent from "@/components/CookieConsent";
 
 import { getSiteUrl } from "@/lib/site";
 import {
@@ -138,22 +134,11 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable}`}
     >
       <body className="min-h-screen bg-bg font-sans antialiased">
-        <GoogleAnalytics />
-
-        <MicrosoftClarity />
-
-        <GaRouteTracker />
-
-        <ScrollToHash />
-
-        {children}
-
-        {/* Sundar Digital AI Assistant */}
-        <ChatWidget />
-
-        <VisitNotifier />
-
-        <Analytics />
+        <CookieConsent>
+          <ScrollToHash />
+          {children}
+          <ChatWidget />
+        </CookieConsent>
       </body>
     </html>
   );

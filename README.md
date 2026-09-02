@@ -61,9 +61,9 @@ Features below are implemented in the current codebase:
 - Canonical production URL support
 
 ### Analytics
-- Google Analytics 4
-- Microsoft Clarity
-- Vercel Analytics
+- Consent-controlled Google Analytics 4
+- Consent-controlled Microsoft Clarity
+- Consent-controlled Vercel Analytics
 
 ### Motion & UI
 - Framer Motion section reveals and interactions
@@ -109,7 +109,7 @@ Next.js API routes
 SMTP / email services (Nodemailer)
 ```
 
-Analytics instrumentation on every page via the root layout:
+Analytics instrumentation is mounted after the visitor grants optional analytics consent:
 
 ```text
 Website
@@ -117,6 +117,8 @@ Website
  ├── Microsoft Clarity
  └── Vercel Analytics
 ```
+
+The site shows a cookie preferences prompt on the first visit. Essential functionality remains available, while Google Analytics, Microsoft Clarity, Vercel Analytics, and optional visit notifications stay disabled until the visitor accepts Analytics. Preferences can be reopened from the footer.
 
 **Key backend routes**
 

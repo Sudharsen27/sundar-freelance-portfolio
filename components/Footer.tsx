@@ -1,3 +1,5 @@
+"use client";
+
 import { whatsappUrl } from "@/lib/whatsapp";
 import { BRAND_NAME, JOB_TITLE, PERSON_NAME } from "@/lib/brand";
 import { getLinkedInUrl } from "@/lib/social";
@@ -35,6 +37,10 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  function openCookiePreferences() {
+    window.dispatchEvent(new Event("open-cookie-preferences"));
+  }
+
   return (
     <footer className="relative mt-8 border-t border-white/[0.06] py-12 sm:py-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-purple/30 to-transparent" aria-hidden />
@@ -79,7 +85,17 @@ export default function Footer() {
                 +91 6382519651
               </a>
             </p>
-            <p>{BRAND_NAME} © 2026 · All Rights Reserved</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:justify-end">
+              <button
+                type="button"
+                onClick={openCookiePreferences}
+                className="text-text-secondary underline decoration-white/20 underline-offset-4 transition hover:text-text-primary hover:decoration-accent-cyan"
+              >
+                Cookie preferences
+              </button>
+              <span aria-hidden>·</span>
+              <p>{BRAND_NAME} © 2026 · All Rights Reserved</p>
+            </div>
           </div>
         </div>
       </div>
